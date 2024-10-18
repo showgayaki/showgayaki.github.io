@@ -1,0 +1,10 @@
+.header{
+    margin-bottom: 1rem;
+    &__title{
+        height: 100%;
+        margin: 2rem 0 1rem 0;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #eaecef;
+        font-size: 1.8rem;
+    }
+}
