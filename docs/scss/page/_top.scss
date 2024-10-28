@@ -1,0 +1,50 @@
+.app-list-section{
+    &__title{
+        margin-bottom: 1.6rem;
+    }
+}
+
+.app-list{
+    margin-bottom: 40px;
+    &__item{
+        margin-bottom: 30px;
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+}
+
+.app{
+    display: flex;
+    align-items: center;
+    &__image{
+        width: 35%;
+        border: 1px solid #888;
+        border-radius: 20px;
+        margin-right: 15px;
+    }
+    &__detail{
+        flex-grow: 1;
+    }
+}
+
+.app-detail{
+    &__app-name{
+        margin-bottom: .5rem;
+    }
+    &__description{
+        font-size: .8rem;
+        margin-bottom: 10px;
+    }
+}
+
+.store-link{
+    display: flex;
+    justify-content: space-between;
+    &__item{
+        &:last-child{margin-right: 0;}
+    }
+    &__image{
+        height: 33px;
+    }
+}
