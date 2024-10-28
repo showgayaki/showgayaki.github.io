@@ -1,10 +1,22 @@
 .header{
+    position: sticky;
+    top: 0;
+    height: 48px;
     margin-bottom: 1rem;
+    background-color: #fff;
+    border-bottom: 1px solid #eaecef;
     &__title{
+        display: flex;
+        align-items: center;
         height: 100%;
-        margin: 2rem 0 1rem 0;
-        padding-bottom: 6px;
-        border-bottom: 1px solid #eaecef;
+        padding: 0 15px;
         font-size: 1.8rem;
+    }
+    &__link{
+        display: inline-block;
+        width: 36px;
+    }
+    &__image{
+        width: 36px;
     }
 }
