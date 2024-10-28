@@ -12,6 +12,13 @@
             margin-bottom: 0;
         }
     }
+    @media screen and (min-width: 768px) {
+        display: flex;
+        flex-wrap: wrap;
+        &__item{
+            margin-bottom: 0;
+        }
+    }
 }
 
 .app{
@@ -25,6 +32,13 @@
     }
     &__detail{
         flex-grow: 1;
+    }
+    @media screen and (min-width: 768px) {
+        width: 48%;
+        margin-bottom: 30px;
+        &:nth-child(odd){
+            margin-right: 4%;
+        }
     }
 }
 
@@ -46,5 +60,10 @@
     }
     &__image{
         height: 33px;
+    }
+    @media screen and (min-width: 768px) {
+        &__image{
+            height: 45px;
+        }
     }
 }
