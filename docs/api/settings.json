@@ -1,0 +1,10 @@
+{
+    "otsurin":{
+        "ios": {
+            "isEnabledAd": true
+        },
+        "android": {
+            "isEnabledAd": false
+        }
+    }
+}
