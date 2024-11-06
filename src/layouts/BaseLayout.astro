@@ -1,0 +1,31 @@
+---
+import { undefined } from 'astro:schema';
+import Header from '../components/Header.astro';
+import '../styles/_base.scss';
+
+const siteTitle = 'Kanke World';
+const { page, pageTitle } = Astro.props;
+const mainClass = page === undefined? 'container': `container ${page}`;
+---
+
+<html lang="ja">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{siteTitle} | {pageTitle}</title>
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="stylesheet" href="/css/reset.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+        <link rel="manifest" href="/site.webmanifest">
+	</head>
+	<body>
+        <Header />
+        <main class={mainClass}>
+            <slot />
+        </main>
+	</body>
+</html>

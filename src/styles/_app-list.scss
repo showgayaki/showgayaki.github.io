@@ -1,0 +1,13 @@
+.app-list{
+    margin-bottom: 40px;
+    &__item{
+        margin-bottom: 30px;
+    }
+    @media screen and (min-width: 768px) {
+        display: flex;
+        flex-wrap: wrap;
+        &__item{
+            margin-bottom: 0;
+        }
+    }
+}

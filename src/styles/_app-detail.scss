@@ -1,0 +1,10 @@
+.app-detail{
+    flex-grow: 1;
+    &__app-name{
+        margin-bottom: .5rem;
+    }
+    &__description{
+        font-size: .8rem;
+        margin-bottom: 10px;
+    }
+}

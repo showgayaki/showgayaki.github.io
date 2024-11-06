@@ -26,6 +26,9 @@
 }
 
 .privacy{
+    &__title{
+        margin-bottom: 1.6rem;
+    }
     &__section{
         overflow: hidden;
     }

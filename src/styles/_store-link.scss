@@ -1,0 +1,16 @@
+.store-link{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    &__item{
+        width: 45%;
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+    &__image{
+        &--appstore{
+            width: 80.65%;
+        }
+    }
+}

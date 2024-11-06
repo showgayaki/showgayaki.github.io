@@ -1,0 +1,48 @@
+---
+import "../styles/_app-detail.scss";
+import "../styles/_store-link.scss";
+
+const { detail } = Astro.props;
+const imagePath = (value: string): string | void => {
+    switch (value) {
+        case "appstore": {
+            return `badge-${value}.svg`;
+        }
+        case "googleplay": {
+            return `badge-${value}.png`;
+        }
+    }
+};
+---
+
+<section class="app-detail">
+    <h3 class="app-detail__app-name">{detail.name}</h3>
+    <p class="app-detail__description">{detail.description}</p>
+    <ul class="app-detail__store-links store-link">
+    {
+        detail.stores.map((store: any) => (
+            function () {
+                if (`${store.url}` != '') {
+                    return (
+                        <Fragment>
+                            <li class="store-link__item">
+                                <a
+                                    class="store-link__item-link"
+                                    href={`${store.url}`}
+                                    target="_blank"
+                                >
+                                    <img
+                                        class={`store-link__image store-link__image--${store.vendor}`}
+                                        src={`/src/images/${imagePath(store.vendor)}`}
+                                        alt={`${store.vendor} Badge`}
+                                    />
+                                </a>
+                            </li>
+                        </Fragment>
+                    );
+                }
+            }
+        ))
+    }
+    </ul>
+</section>

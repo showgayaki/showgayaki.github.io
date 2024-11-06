@@ -1,0 +1,13 @@
+---
+import { Image } from "astro:assets";
+import Logo from "../images/logo.png";
+import "../styles/_header.scss";
+---
+
+<header class="header">
+    <h1 class="header__title">
+        <a class="header__link" href="/">
+            <Image src={Logo} alt="logo" class="header__image" />
+        </a>
+    </h1>
+</header>

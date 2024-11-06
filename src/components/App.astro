@@ -1,0 +1,15 @@
+---
+import AppDetail from "./AppDetail.astro";
+import "../styles/_app.scss";
+
+const { app } = Astro.props;
+---
+
+<li class="app-list__item app">
+    <img
+        class="app__image"
+        src=`/src/images/${app.iconPath}`
+        alt=`${app.name}アイコン`
+    />
+    <AppDetail detail={app} />
+</li>

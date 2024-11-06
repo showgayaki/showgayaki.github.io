@@ -1,0 +1,14 @@
+---
+import App from "./App.astro";
+import "../styles/_app-list.scss";
+
+const { apps } = Astro.props;
+interface AppDetail {
+    name: string;
+    description: string;
+}
+---
+
+<ul class="my-apps__list app-list">
+    {apps.map((app: AppDetail) => <App app={app} />)}
+</ul>
