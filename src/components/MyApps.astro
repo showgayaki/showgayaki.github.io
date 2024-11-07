@@ -2,11 +2,21 @@
 import AppList from "./AppList.astro";
 import '../styles/_my-apps.scss';
 
-const apps = [
+export interface MyAppInfo {
+    name: string;
+    description: string;
+    iconFile: string;
+    stores: {
+        vendor: string;
+        url: string;
+    }[];
+}
+
+const apps: MyAppInfo[] = [
     {
         name: '確認さん',
         description: '1タップでグローバルIPを確認できます',
-        iconPath: 'icon_kakuninsan.png',
+        iconFile: 'icon_kakuninsan.png',
         stores: [
             {
                 vendor: 'appstore',
@@ -21,7 +31,7 @@ const apps = [
     {
         name: 'お釣り計算機',
         description: '1タップでお釣りの計算ができます',
-        iconPath: 'icon_otsurin.png',
+        iconFile: 'icon_otsurin.png',
         stores:  [
             {
                 vendor: 'appstore',
