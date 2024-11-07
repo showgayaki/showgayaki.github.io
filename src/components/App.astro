@@ -2,10 +2,21 @@
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 
-import AppDetail from "./AppDetail.astro";
 import "../styles/_app.scss";
+import "../styles/_app-detail.scss";
+import "../styles/_store-link.scss";
 
 const { app } = Astro.props;
+const imagePath = (value: string): string | void => {
+    switch (value) {
+        case "appstore": {
+            return `badge-${value}.svg`;
+        }
+        case "googleplay": {
+            return `badge-${value}.png`;
+        }
+    }
+};
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
     "../images/*.{jpeg,jpg,png,gif,svg}",
@@ -23,5 +34,35 @@ if (!images[`../images/${app.iconFile}`]) {
         src={images[`../images/${app.iconFile}`]()}
         alt={`${app.name}アイコン`}
     />
-    <AppDetail detail={app} />
+    <section class="app-detail">
+        <h3 class="app-detail__app-name">{app.name}</h3>
+        <p class="app-detail__description">{app.description}</p>
+        <ul class="app-detail__store-links store-link">
+        {
+            app.stores.map((store: any) => (
+                function () {
+                    if (`${store.url}` != '') {
+                        return (
+                            <Fragment>
+                                <li class="store-link__item">
+                                    <a
+                                        class="store-link__item-link"
+                                        href={`${store.url}`}
+                                        target="_blank"
+                                    >
+                                        <Image
+                                            class={`store-link__image store-link__image--${store.vendor}`}
+                                            src={images[`../images/${imagePath(store.vendor)}`]()}
+                                            alt={`${store.vendor} Badge`}
+                                        />
+                                    </a>
+                                </li>
+                            </Fragment>
+                        );
+                    }
+                }
+            ))
+        }
+        </ul>
+    </section>
 </li>

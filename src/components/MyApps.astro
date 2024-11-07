@@ -1,6 +1,7 @@
 ---
-import AppList from "./AppList.astro";
+import App from "./App.astro";
 import '../styles/_my-apps.scss';
+import "../styles/_app-list.scss";
 
 export interface MyAppInfo {
     name: string;
@@ -47,5 +48,7 @@ const apps: MyAppInfo[] = [
 ---
 <section class="my-apps">
     <h2 class="my-apps__title">わたしのアプリたち</h2>
-    <AppList apps={apps} />
+    <ul class="my-apps__list app-list">
+        {apps.map((app: MyAppInfo) => <App app={app} />)}
+    </ul>
 </section>
