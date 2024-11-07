@@ -1,5 +1,6 @@
 ---
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/_base.scss';
 
 const siteTitle = 'Kanke World';
@@ -26,5 +27,6 @@ const mainClass = page === undefined? 'container': `container ${page}`;
         <main class={mainClass}>
             <slot />
         </main>
+        <Footer />
 	</body>
 </html>

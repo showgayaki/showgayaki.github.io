@@ -1,5 +1,6 @@
 body{
-    padding-bottom: 60px;
+    display: flex;
+    flex-flow: column;
     font-family: "Helvetica Neue",
     Arial,
     "Hiragino Kaku Gothic ProN",
@@ -10,6 +11,7 @@ body{
 .container{
     padding: 0 15px;
     overflow: hidden;
+    flex-grow: 1;
 }
 .page-title{
     margin-bottom: 1.6rem;
