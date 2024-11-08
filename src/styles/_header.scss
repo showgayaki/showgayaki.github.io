@@ -1,28 +1,34 @@
-.header{
+.header {
     position: sticky;
     top: 0;
-    height: 48px;
+    z-index: 2;
     margin-bottom: 1rem;
     background-color: #fff;
     border-bottom: 1px solid #eaecef;
-    &__title{
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 15px;
+    }
+    &__title {
         display: flex;
         align-items: center;
         height: 100%;
-        padding: 0 15px;
         font-size: 1.8rem;
     }
-    &__link{
+    &__link {
         display: inline-block;
         width: 36px;
         height: 36px;
     }
-    &__image{
+    &__image {
         width: 100%;
         height: 100%;
     }
     @media screen and (min-width: 768px) {
-        &__title{
+        &__container {
+            position: relative;
             max-width: 1024px;
             margin: 0 auto;
         }
