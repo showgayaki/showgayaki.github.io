@@ -7,11 +7,12 @@ import Footer from '../components/Footer.astro';
 import '../styles/style.scss';
 
 const pathName = Astro.url.pathname;
+const pathNameNoSlash = pathName.replaceAll('/', '');
 const mainClass = (pathName === '/') ?
                      'container' :
-                     `container ${pathName.replace('/', '')}`;
+                     `container ${pathNameNoSlash}`;
 
-const pageMetadata = siteMetadata[pathName];
+const pageMetadata = siteMetadata[`/${pathNameNoSlash}`];
 ---
 
 <html lang="ja">
