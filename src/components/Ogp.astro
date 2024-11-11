@@ -8,7 +8,7 @@ const { siteTitle, metadata } = Astro.props;
 
 <!-- OGP -->
 <meta property="og:type" content="website">
-<meta property="og:title" content={metadata.title}>
+<meta property="og:title" content=`${siteTitle} - ${metadata.title}`>
 <meta property="og:description" content={metadata.description}>
 <meta property="og:url" content={Astro.url}>
 <meta property="og:image" content=`${Astro.url.origin}/ogp.png`>
@@ -16,5 +16,7 @@ const { siteTitle, metadata } = Astro.props;
 <meta property="og:locale" content="ja_JP">
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content={siteTitle}>
+<meta name="twitter:title" content={siteTitle}>
+<meta name="twitter:description" content={metadata.description}>
+<meta name="twitter:image" content=`${Astro.url.origin}/ogp.png`>
 <link rel="canonical" href={Astro.url.href}>
