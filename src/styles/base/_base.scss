@@ -1,12 +1,9 @@
+@use 'variables' as *;
+
 body{
     display: flex;
     flex-flow: column;
-    font-family: "Helvetica Neue",
-    Arial,
-    "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans",
-    Meiryo,
-    sans-serif;
+    font-family: $font-family;
 }
 .container{
     padding: 0 15px;

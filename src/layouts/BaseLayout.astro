@@ -1,7 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import '../styles/_base.scss';
+import '../styles/style.scss';
 
 const siteTitle = 'Kanke World';
 const { page, pageTitle } = Astro.props;
@@ -14,13 +14,12 @@ const mainClass = page === undefined ? 'container' : `container ${page}`;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{siteTitle} - {pageTitle}</title>
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="icon" type="image/x-icon" href="/favicon.svg" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
         <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-        <link rel="stylesheet" href="/css/reset.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
         <link rel="manifest" href="/site.webmanifest">
 	</head>

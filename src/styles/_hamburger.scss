@@ -1,7 +1,9 @@
+@use 'base/variables' as *;
+
 .hamburger{
     $this: &;
     $height: 3px;
-    $marginBottom: 8px;
+    $marginBottom: 6px;
     $translateY: $height + $marginBottom;
 
     position: relative;
@@ -12,7 +14,7 @@
         width: 30px;
         height: $height;
         margin-bottom: $marginBottom;
-        background-color: #172a47;
+        background-color: $color-primary;
         transition: all .5s;
         &:last-child{
             margin-bottom: 0;

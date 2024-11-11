@@ -1,17 +1,19 @@
+@use 'base/variables' as *;
+
 @mixin title{
     margin-bottom: .8rem;
     padding: 0.3em 0 0.3em 0.3em;
-    color: #364e96;
-    border-left: solid 12px #364e96;
-    border-bottom: solid 3px #364e96;
+    color: $color-primary;
+    border-left: solid 12px $color-primary;
+    border-bottom: solid 3px $color-primary;
     font-size: 1.3rem;
 }
 @mixin subtitle{
-    color: #364e96;
+    color: $color-primary;
     padding: 0.5em 0;
     margin-bottom: .8rem;
-    border-top: solid 3px #364e96;
-    border-bottom: solid 3px #364e96;
+    border-top: solid 3px $color-primary;
+    border-bottom: solid 3px $color-primary;
     font-size: 1.1rem;
 }
 @mixin explanation {
