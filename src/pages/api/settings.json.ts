@@ -4,7 +4,7 @@ export async function GET({ }) {
             {
                 "otsurin": {
                     "ios": {
-                        "isEnabledAd": true
+                        "isEnabledAd": false
                     },
                     "android": {
                         "isEnabledAd": false
