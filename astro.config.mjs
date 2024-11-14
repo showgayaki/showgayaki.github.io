@@ -9,6 +9,11 @@ export default defineConfig({
         host: true,
     },
     vite: {
+        build: {
+            rollupOptions: {
+                external: ['fsevents'],
+            },
+        },
         css: {
             preprocessorOptions: {
                 scss: {
@@ -16,8 +21,5 @@ export default defineConfig({
                 },
             },
         },
-        ssr: {
-          external: ['fsevents'],
-        }
     },
 });
