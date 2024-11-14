@@ -16,5 +16,8 @@ export default defineConfig({
                 },
             },
         },
+        ssr: {
+          external: ['fsevents'],
+        }
     },
 });
