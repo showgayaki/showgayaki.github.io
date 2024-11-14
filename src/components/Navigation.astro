@@ -2,8 +2,33 @@
 import { Image } from 'astro:assets';
 
 import Hamburger from '../images/hamburger.png';
+import QrCode from 'qrcode';
+import astroConfig from '../../astro.config.mjs';
+
+async function generateFixedSizeQrCode(text: string, size: number) {
+    try {
+        // QRコードのオプションを設定
+        const options: QrCode.QRCodeToDataURLOptions = {
+            width: size,
+            errorCorrectionLevel: 'H',
+        };
+
+        // QRコードを生成
+        const qr: Promise<string> = QrCode.toDataURL(text, options);
+
+        // QRコードのDataURLを返す
+        return qr;
+    } catch (err) {
+        console.error('[Error] Generate to QR Code', err);
+    }
+}
+
+// サイトURLをQRコードに変換
+console.log(`Generate URL[${astroConfig.site}] to QR Code.`)
+const qrImage = await generateFixedSizeQrCode(astroConfig.site!, 512);
 ---
 
 <nav id="navigation" class="navigation">
-    <Image src={Hamburger} alt="logo" class="navigation__image" />
+    <Image src={Hamburger} alt="hamburger" id="hamburgerImage" class="navigation__image navigation__image--hanburger show" />
+    <img src=`${qrImage}` alt="QR Code" id="qrCode" class="navigation__image navigation__image--qr-code" />
 </nav>
