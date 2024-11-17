@@ -1,7 +1,31 @@
 ---
 const today = new Date();
+
+interface Sns {
+    name: string;
+    url: string;
+}
+
+const sns: Sns[] = [
+    { name: 'github', url: 'https://github.com/showgayaki?tab=repositories' },
+    // { name: 'instagram', url: 'instagram://user?username=jan_ken_g' },
+    // { name: 'instagram', url: 'https://www.instagram.com/jan_ken_g/' },
+];
 ---
 
 <footer class="footer">
     <p class="footer__copyright">&copy; {today.getFullYear()} Kenji Kanke</p>
+    <ul class="footer__sns-list sns-list">
+        {
+            sns.map((item) => {
+                return (
+                    <li class="sns-list__item">
+                        <a href={item.url} target="_new" rel="noopener noreferrer">
+                            <i class={`fab fa-${item.name} fa-2x`} />
+                        </a>
+                    </li>
+                );
+            })
+        }
+    </ul>
 </footer>
