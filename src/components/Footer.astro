@@ -3,13 +3,21 @@ const today = new Date();
 
 interface Sns {
     name: string;
-    url: string;
+    appUrl: string;
+    webUrl: string;
 }
 
 const sns: Sns[] = [
-    { name: 'github', url: 'https://github.com/showgayaki?tab=repositories' },
-    // { name: 'instagram', url: 'instagram://user?username=jan_ken_g' },
-    // { name: 'instagram', url: 'https://www.instagram.com/jan_ken_g/' },
+    {
+        name: 'github',
+        appUrl: '',
+        webUrl: 'https://github.com/showgayaki?tab=repositories',
+    },
+    {
+        name: 'instagram',
+        appUrl: 'instagram://user?username=jan_ken_g',
+        webUrl: 'https://www.instagram.com/jan_ken_g/',
+    },
 ];
 ---
 
@@ -19,8 +27,13 @@ const sns: Sns[] = [
         {
             sns.map((item) => {
                 return (
-                    <li class="sns-list__item">
-                        <a href={item.url} target="_new" rel="noopener noreferrer">
+                    <li class="sns-list__item sns-item">
+                        <a
+                            class={`sns-item__link sns-item__link--${item.name}`}
+                            href=""
+                            data-appurl={item.appUrl}
+                            data-weburl={item.webUrl}
+                        >
                             <i class={`fab fa-${item.name} fa-2x`} />
                         </a>
                     </li>
@@ -29,3 +42,6 @@ const sns: Sns[] = [
         }
     </ul>
 </footer>
+<script>
+    import '../scripts/sns.ts';
+</script>
