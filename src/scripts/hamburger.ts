@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () =>{
 
     hamburgerMenu?.addEventListener('click', () => {
         hamburgerMenu.classList.toggle('expanded');
-        document.getElementById('navigation')!.classList.toggle('show');
+        document.getElementById('navigation')?.classList.toggle('show');
 
         hamburgerImage?.classList.add('show');
         qrCode?.classList.remove('show');
