@@ -7,22 +7,24 @@ import type { MyAppInfo } from './MyApps.astro';
 type Props = { app: MyAppInfo };
 const { app } = Astro.props;
 const imagePath = (value: string): string | void => {
+    let fileNme = `badge_${value}`;
+
     switch (value) {
-        case 'appstore': {
-            return `badge-${value}.svg`;
+        case 'google-play': {
+            return `${fileNme}.png`;
         }
-        case 'googleplay': {
-            return `badge-${value}.png`;
+        default: {
+            return `${fileNme}.svg`;
         }
     }
 };
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-    '../images/*.{jpeg,jpg,png,gif,svg}'
+    '../images/*.{jpeg,jpg,png,gif,svg}',
 );
 if (!images[`../images/${app.iconFile}`]) {
     throw new Error(
-        `'${app.iconFile}' does not exist in glob: 'src/images/*.{jpeg,jpg,png,gif}'`
+        `'${app.iconFile}' does not exist in glob: 'src/images/*.{jpeg,jpg,png,gif}'`,
     );
 }
 ---
@@ -37,31 +39,34 @@ if (!images[`../images/${app.iconFile}`]) {
         <h3 class="app-detail__app-name">{app.name}</h3>
         <p class="app-detail__description">{app.description}</p>
         <ul class="app-detail__store-links store-link">
-        {
-            app.stores.map((store) => (
-                function () {
-                    if (`${store.url}` != '') {
-                        return (
-                            <Fragment>
-                                <li class="store-link__item">
-                                    <a
-                                        class="store-link__item-link"
-                                        href={`${store.url}`}
-                                        target="_blank"
-                                    >
-                                        <Image
-                                            class={`store-link__image store-link__image--${store.vendor}`}
-                                            src={images[`../images/${imagePath(store.vendor)}`]()}
-                                            alt={`${store.vendor} Badge`}
-                                        />
-                                    </a>
-                                </li>
-                            </Fragment>
-                        );
-                    }
-                }
-            ))
-        }
+            {
+                app.stores.map(
+                    (store) =>
+                        function () {
+                            if (`${store.url}` != '') {
+                                return (
+                                    <Fragment>
+                                        <li class="store-link__item">
+                                            <a
+                                                class="store-link__item-link"
+                                                href={`${store.url}`}
+                                                target="_blank"
+                                            >
+                                                <Image
+                                                    class={`store-link__image store-link__image--${store.vendor}`}
+                                                    src={images[
+                                                        `../images/${imagePath(store.vendor)}`
+                                                    ]()}
+                                                    alt={`${store.vendor} Badge`}
+                                                />
+                                            </a>
+                                        </li>
+                                    </Fragment>
+                                );
+                            }
+                        },
+                )
+            }
         </ul>
     </section>
 </li>
