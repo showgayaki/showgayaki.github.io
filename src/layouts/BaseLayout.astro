@@ -5,25 +5,27 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/style.scss';
+import { undefined } from 'astro:schema';
 
-const pathName = Astro.url.pathname;
-const pathNameNoSlash = pathName.replaceAll('/', '');
-const mainClass = (pathName === '/') ?
-                     'container' :
-                     `container ${pathNameNoSlash}`;
+const { lang = 'ja', page } = Astro.props;
+const mainClass = page === undefined ? 'container' : `container ${page}`;
 
-const pageMetadata = siteMetadata[`/${pathNameNoSlash}`];
+const pageMetadata =
+    page === undefined ? siteMetadata['/'] : siteMetadata[`/${page}`];
+
+console.log('mainClass', mainClass);
+console.log('pageMetadata', pageMetadata);
 ---
 
-<html lang="ja">
-	<head>
+<html lang={lang}>
+    <head>
         <BaseHead metadata={pageMetadata} />
-	</head>
-	<body>
+    </head>
+    <body>
         <Header />
         <main class={mainClass}>
             <slot />
         </main>
         <Footer />
-	</body>
+    </body>
 </html>
