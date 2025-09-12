@@ -1,12 +1,12 @@
 .app{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     &__image{
         width: 35%;
         height: auto;
         border: 1px solid #888;
         border-radius: 20px;
-        margin-right: 15px;
     }
     &__detail{
         flex-grow: 1;
