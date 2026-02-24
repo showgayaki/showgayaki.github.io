@@ -37,7 +37,7 @@
     }
     &__section-title{
         @include title;
-        margin-bottom: 1.6rem;
+        margin-bottom: 0.4rem;
     }
     &__explanation{
         @include explanation;
@@ -59,6 +59,7 @@
     }
     &__subsection-title{
         @include subtitle;
+        margin-bottom: 0.4rem;
     }
     &__list{
         &--style-none{
