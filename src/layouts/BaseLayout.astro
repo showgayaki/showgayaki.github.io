@@ -6,13 +6,10 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/style.scss';
 
-const { lang = 'ja', page } = Astro.props;
-const mainClass = page === undefined ? 'container' : `container ${page}`;
-
+const { lang = 'ja', page, mainClass = '' } = Astro.props;
 const pageMetadata =
     page === undefined ? siteMetadata['/'] : siteMetadata[`/${page}`];
 
-console.log('mainClass', mainClass);
 console.log('pageMetadata', pageMetadata);
 ---
 
@@ -22,7 +19,7 @@ console.log('pageMetadata', pageMetadata);
     </head>
     <body>
         <Header />
-        <main class={mainClass}>
+        <main class:list={['container', mainClass]}>
             <slot />
         </main>
         <Footer />

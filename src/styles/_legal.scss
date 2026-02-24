@@ -27,24 +27,23 @@
     list-style: disc;
 }
 
-.privacy{
+.legal{
     &__title{
         margin-bottom: 1.6rem;
     }
     &__section{
         overflow: hidden;
+        margin-bottom: 1.6rem;
     }
-}
-
-.privacy-section{
-    margin-bottom: 1.6rem;
-    &__title{
+    &__section-title{
         @include title;
+        margin-bottom: 1.6rem;
     }
     &__explanation{
         @include explanation;
     }
     &__list{
+        margin-bottom: 1rem;
         &--style-none{
             @include list-style-none;
         }
@@ -52,18 +51,14 @@
             @include list-style-disc;
         }
     }
-}
-
-.subsection{
-    margin-bottom: 1.6rem;
-    &:last-child{
-        margin-bottom: 0
+    &__subsection{
+        margin-bottom: 1.6rem;
+        &:last-child{
+            margin-bottom: 0;
+        }
     }
-    &__title{
+    &__subsection-title{
         @include subtitle;
-    }
-    &__explanation{
-        @include explanation;
     }
     &__list{
         &--style-none{
