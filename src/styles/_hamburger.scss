@@ -1,6 +1,6 @@
 @use 'base/variables' as *;
 
-.hamburger{
+.hamburger {
     $this: &;
     $height: 3px;
     $marginBottom: 6px;
@@ -9,30 +9,36 @@
     position: relative;
     z-index: 3;
     cursor: pointer;
-    &__line{
+
+    &__line {
         display: block;
         width: 30px;
         height: $height;
         margin-bottom: $marginBottom;
         background-color: $color-primary;
         transition: all .5s;
-        &:last-child{
+
+        &:last-child {
             margin-bottom: 0;
         }
     }
-    &.expanded #{$this}__line:nth-last-of-type(1){
+
+    &.expanded #{$this}__line:nth-last-of-type(1) {
         -webkit-transform: translateY(-$translateY) rotate(45deg);
         transform: translateY(-$translateY) rotate(45deg);
     }
-    &.expanded #{$this}__line:nth-last-of-type(2){
+
+    &.expanded #{$this}__line:nth-last-of-type(2) {
         opacity: 0;
     }
-    &.expanded #{$this}__line:nth-last-of-type(3){
+
+    &.expanded #{$this}__line:nth-last-of-type(3) {
         -webkit-transform: translateY($translateY) rotate(-45deg);
         transform: translateY($translateY) rotate(-45deg);
     }
+
     @media screen and (min-width: 768px) {
-        &__line{
+        &__line {
             width: 35px;
         }
     }

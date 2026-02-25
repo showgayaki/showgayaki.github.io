@@ -1,20 +1,24 @@
-.app{
+.app {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    &__image{
+
+    &__image {
         width: 35%;
         height: auto;
         border: 1px solid #888;
         border-radius: 20px;
     }
-    &__detail{
+
+    &__detail {
         flex-grow: 1;
     }
+
     @media screen and (min-width: 768px) {
         width: 48%;
         margin-bottom: 30px;
-        &:nth-child(odd){
+
+        &:nth-child(odd) {
             margin-right: 4%;
         }
     }

@@ -1,4 +1,4 @@
-.navigation{
+.navigation {
     position: fixed;
     top: 0;
     left: 100vw;
@@ -11,30 +11,35 @@
     background-color: #eee;
     transition: all .5s;
 
-    &.show{
+    &.show {
         -webkit-transform: translateX(-100vw);
         transform: translateX(-100vw);
     }
-    &__image{
+
+    &__image {
         width: 80%;
         height: auto;
         margin: 0 auto;
-        &--hanburger{
+
+        &--hanburger {
             display: none;
-            &.show{
+
+            &.show {
                 display: block;
             }
         }
-        &--qr-code{
+
+        &--qr-code {
             display: none;
-            &.show{
+
+            &.show {
                 display: block;
             }
         }
     }
 
     @media screen and (min-width: 768px) {
-        &__image{
+        &__image {
             width: 70%;
         }
     }
