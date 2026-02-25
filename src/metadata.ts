@@ -12,5 +12,9 @@ export const siteMetadata: {[pathName: string]: PageMetadata} = {
     '/privacy': {
         title: 'プライバシーポリシー',
         description: 'わたしがつくったアプリに関するプライバシーポリシーです',
+    },
+    '/tokushoho': {
+        title: '特定商取引法に基づく表記',
+        description: 'わたしがつくったアプリに関する特定商取引法に基づく表記です',
     }
 }
