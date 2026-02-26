@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const env = import.meta.env;
+const myName = import.meta.env.PUBLIC_MY_NAME;
+const myEmail = import.meta.env.PUBLIC_MY_EMAIL;
 ---
 
 <BaseLayout page="tokushoho" lang="ja" mainClass="legal">
@@ -9,12 +10,12 @@ const env = import.meta.env;
 
   <section class="legal__section">
     <h3 class="legal__section-title">販売事業者</h3>
-    <p class="legal__explanation">{env.PUBLIC_MY_NAME}</p>
+    <p class="legal__explanation">{myName}</p>
   </section>
 
   <section class="legal__section">
     <h3 class="legal__section-title">運営責任者</h3>
-    <p class="legal__explanation">{env.PUBLIC_MY_NAME}</p>
+    <p class="legal__explanation">{myName}</p>
   </section>
 
   <section class="legal__section">
@@ -34,8 +35,8 @@ const env = import.meta.env;
   <section class="legal__section">
     <h3 class="legal__section-title">メールアドレス</h3>
     <p class="legal__explanation">
-      <a href={`mailto:${env.PUBLIC_MY_EMAIL}`}>
-        {env.PUBLIC_MY_EMAIL}
+      <a href={`mailto:${myEmail}`}>
+        {myEmail}
       </a>
     </p>
   </section>
