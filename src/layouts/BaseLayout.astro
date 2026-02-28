@@ -8,7 +8,7 @@ import '../styles/style.scss';
 
 const { lang = 'ja', page, mainClass = '' } = Astro.props;
 const pageMetadata =
-    page === undefined ? siteMetadata['/'] : siteMetadata[`/${page}`];
+    page === undefined ? siteMetadata['/'] : siteMetadata[`${page}`];
 
 console.log('pageMetadata', pageMetadata);
 ---

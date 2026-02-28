@@ -16,7 +16,7 @@ const lang = Astro.props.lang ?? Astro.params.lang ?? 'ja';
 const dict = lang === 'ja' ? ja : en;
 ---
 
-<BaseLayout page="privacy" lang={lang} mainClass="legal">
+<BaseLayout page="/privacy" lang={lang} mainClass="legal">
     <h2 class="legal__title">{dict.title}</h2>
 
     {

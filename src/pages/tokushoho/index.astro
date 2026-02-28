@@ -5,89 +5,88 @@ const myName = import.meta.env.PUBLIC_MY_NAME;
 const myEmail = import.meta.env.PUBLIC_MY_EMAIL;
 ---
 
-<BaseLayout page="tokushoho" lang="ja" mainClass="legal">
-  <h2 class="legal__title">特定商取引法に基づく表記</h2>
+<BaseLayout page="/tokushoho" lang="ja" mainClass="legal">
+    <h2 class="legal__title">特定商取引法に基づく表記</h2>
 
-  <section class="legal__section">
-    <h3 class="legal__section-title">販売事業者</h3>
-    <p class="legal__explanation">{myName}</p>
-  </section>
+    <section class="legal__section">
+        <h3 class="legal__section-title">販売事業者</h3>
+        <p class="legal__explanation">{myName}</p>
+    </section>
 
-  <section class="legal__section">
-    <h3 class="legal__section-title">運営責任者</h3>
-    <p class="legal__explanation">{myName}</p>
-  </section>
+    <section class="legal__section">
+        <h3 class="legal__section-title">運営責任者</h3>
+        <p class="legal__explanation">{myName}</p>
+    </section>
 
-  <section class="legal__section">
-    <h3 class="legal__section-title">所在地</h3>
-    <p class="legal__explanation">
-      請求があった場合に遅滞なく開示いたします。
-    </p>
-  </section>
+    <section class="legal__section">
+        <h3 class="legal__section-title">所在地</h3>
+        <p class="legal__explanation">
+            請求があった場合に遅滞なく開示いたします。
+        </p>
+    </section>
 
-  <section class="legal__section">
-    <h3 class="legal__section-title">電話番号</h3>
-    <p class="legal__explanation">
-      請求があった場合に遅滞なく開示いたします。
-    </p>
-  </section>
+    <section class="legal__section">
+        <h3 class="legal__section-title">電話番号</h3>
+        <p class="legal__explanation">
+            請求があった場合に遅滞なく開示いたします。
+        </p>
+    </section>
 
-  <section class="legal__section">
-    <h3 class="legal__section-title">メールアドレス</h3>
-    <p class="legal__explanation">
-      <a href={`mailto:${myEmail}`}>
-        {myEmail}
-      </a>
-    </p>
-  </section>
+    <section class="legal__section">
+        <h3 class="legal__section-title">メールアドレス</h3>
+        <p class="legal__explanation">
+            <a href={`mailto:${myEmail}`}>
+                {myEmail}
+            </a>
+        </p>
+    </section>
 
-  <section class="legal__section">
-    <h3 class="legal__section-title">販売価格</h3>
-    <p class="legal__explanation">
-      各アプリケーションの購入ページに表示された価格に準じます。
-    </p>
-  </section>
+    <section class="legal__section">
+        <h3 class="legal__section-title">販売価格</h3>
+        <p class="legal__explanation">
+            各アプリケーションの購入ページに表示された価格に準じます。
+        </p>
+    </section>
 
-  <section class="legal__section">
-    <h3 class="legal__section-title">商品代金以外の必要料金</h3>
-    <p class="legal__explanation">
-      インターネット接続に必要な通信料はお客様のご負担となります。
-    </p>
-  </section>
+    <section class="legal__section">
+        <h3 class="legal__section-title">商品代金以外の必要料金</h3>
+        <p class="legal__explanation">
+            インターネット接続に必要な通信料はお客様のご負担となります。
+        </p>
+    </section>
 
-  <section class="legal__section">
-    <h3 class="legal__section-title">支払方法</h3>
-    <p class="legal__explanation">
-      各プラットフォーム（App Store 等）が定める決済方法によります。
-    </p>
-  </section>
+    <section class="legal__section">
+        <h3 class="legal__section-title">支払方法</h3>
+        <p class="legal__explanation">
+            各プラットフォーム（App Store 等）が定める決済方法によります。
+        </p>
+    </section>
 
-  <section class="legal__section">
-    <h3 class="legal__section-title">支払時期</h3>
-    <p class="legal__explanation">
-      各プラットフォームの定める支払時期に従います。サブスクリプション型サービスの場合は、契約期間ごとに自動更新されることがあります。
-    </p>
-  </section>
+    <section class="legal__section">
+        <h3 class="legal__section-title">支払時期</h3>
+        <p class="legal__explanation">
+            各プラットフォームの定める支払時期に従います。サブスクリプション型サービスの場合は、契約期間ごとに自動更新されることがあります。
+        </p>
+    </section>
 
-  <section class="legal__section">
-    <h3 class="legal__section-title">提供時期</h3>
-    <p class="legal__explanation">
-      決済完了後、直ちにご利用いただけます。
-    </p>
-  </section>
+    <section class="legal__section">
+        <h3 class="legal__section-title">提供時期</h3>
+        <p class="legal__explanation">決済完了後、直ちにご利用いただけます。</p>
+    </section>
 
-  <section class="legal__section">
-    <h3 class="legal__section-title">返品・キャンセルについて</h3>
-    <p class="legal__explanation">
-      デジタルコンテンツの性質上、購入後の返品・返金は原則としてお受けできません。<br />
-      サブスクリプション型サービスの解約方法は、各プラットフォームのサブスクリプション管理画面等をご確認ください。
-    </p>
-  </section>
+    <section class="legal__section">
+        <h3 class="legal__section-title">返品・キャンセルについて</h3>
+        <p class="legal__explanation">
+            デジタルコンテンツの性質上、購入後の返品・返金は原則としてお受けできません。<br
+            />
+            サブスクリプション型サービスの解約方法は、各プラットフォームのサブスクリプション管理画面等をご確認ください。
+        </p>
+    </section>
 
-  <section class="legal__section">
-    <h3 class="legal__section-title">動作環境</h3>
-    <p class="legal__explanation">
-      各アプリケーションの購入ページに表示された対応環境をご確認ください。
-    </p>
-  </section>
+    <section class="legal__section">
+        <h3 class="legal__section-title">動作環境</h3>
+        <p class="legal__explanation">
+            各アプリケーションの購入ページに表示された対応環境をご確認ください。
+        </p>
+    </section>
 </BaseLayout>
