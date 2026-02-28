@@ -30,6 +30,10 @@
     padding-left: 1.6rem;
     list-style: disc;
 }
+@mixin list-style-decimal {
+    padding-left: 1.6rem;
+    list-style: decimal;
+}
 
 .legal {
     &__title {
@@ -60,6 +64,10 @@
         &--style-disc {
             @include list-style-disc;
         }
+
+        &--style-decimal {
+            @include list-style-decimal;
+        }
     }
 
     &__subsection {
@@ -73,15 +81,5 @@
     &__subsection-title {
         @include subtitle;
         margin-bottom: 0.4rem;
-    }
-
-    &__list {
-        &--style-none {
-            @include list-style-none;
-        }
-
-        &--style-disc {
-            @include list-style-disc;
-        }
     }
 }
