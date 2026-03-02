@@ -1,19 +1,19 @@
 ---
-import { siteMetadata } from '../metadata';
+import { siteMetadata } from '@/metadata';
 
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/style.scss';
+import BaseHead from '@/components/BaseHead.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import '@/styles/style.scss';
 
-const { lang = 'ja', page, mainClass = '' } = Astro.props;
+const { page, mainClass = '' } = Astro.props;
 const pageMetadata =
     page === undefined ? siteMetadata['/'] : siteMetadata[`${page}`];
 
 console.log('pageMetadata', pageMetadata);
 ---
 
-<html lang={lang}>
+<html>
     <head>
         <BaseHead metadata={pageMetadata} />
     </head>

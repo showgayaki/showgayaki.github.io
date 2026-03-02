@@ -1,0 +1,95 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+type LegalLink = {
+    label: string;
+    href: string;
+};
+
+type LegalSubsection = {
+    title: string;
+    paragraphs?: string[];
+    list?: string[];
+    links?: LegalLink[];
+};
+
+type LegalSection = {
+    title: string;
+    paragraphs?: string[];
+    list?: string[];
+    subsections?: LegalSubsection[];
+    contact?: string;
+};
+
+export type LegalDict = {
+    title: string;
+    sections: LegalSection[];
+};
+
+type Props = { page: string,  dict: LegalDict };
+const { page, dict } = Astro.props as Props;
+---
+
+<BaseLayout page={page} mainClass="legal">
+    <h2 class="legal__title">{dict.title}</h2>
+
+    {
+        dict.sections.map((section) => (
+            <section class="legal__section">
+                <h3 class="legal__section-title">{section.title}</h3>
+
+                {section.paragraphs?.map((p) => (
+                    <p class="legal__explanation">{p}</p>
+                ))}
+
+                {section.list && (
+                    <ul class="legal__list legal__list--style-disc">
+                        {section.list.map((item) => (
+                            <li>{item}</li>
+                        ))}
+                    </ul>
+                )}
+
+                {section.subsections?.map((sub) => (
+                    <section class="legal__subsection">
+                        <h4 class="legal__subsection-title">{sub.title}</h4>
+
+                        {sub.paragraphs?.map((p) => (
+                            <p class="legal__explanation">{p}</p>
+                        ))}
+
+                        {sub.list && (
+                            <ul class="legal__list legal__list--style-disc">
+                                {sub.list.map((item) => (
+                                    <li>{item}</li>
+                                ))}
+                            </ul>
+                        )}
+
+                        {sub.links && (
+                            <ul class="legal__list legal__list--style-none">
+                                {sub.links.map((link) => (
+                                    <li>
+                                        <a href={link.href} target="_blank">
+                                            {link.label}
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </section>
+                ))}
+
+                {section.contact && (
+                    <p class="legal__explanation">
+                        E-mail:{' '}
+                        <a href={`mailto:${section.contact}`}>
+                            {section.contact}
+                        </a>
+                    </p>
+                )}
+            </section>
+        ))
+    }
+</BaseLayout>

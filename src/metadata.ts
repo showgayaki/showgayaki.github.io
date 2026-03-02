@@ -4,7 +4,7 @@ export interface PageMetadata {
     keywords?: string[];
 }
 
-export const siteMetadata: {[pathName: string]: PageMetadata} = {
+export const siteMetadata: {[path: string]: PageMetadata} = {
     '/': {
         title: 'トップページ',
         description: 'わたしがつくったアプリたちを紹介します',
@@ -12,6 +12,14 @@ export const siteMetadata: {[pathName: string]: PageMetadata} = {
     '/privacy': {
         title: 'プライバシーポリシー',
         description: 'わたしがつくったアプリに関するプライバシーポリシーです',
+    },
+    '/privacy/ja': {
+        title: 'プライバシーポリシー',
+        description: 'わたしがつくったアプリに関するプライバシーポリシーです',
+    },
+    '/privacy/en': {
+        title: 'Privacy Policy',
+        description: 'Privacy policy for apps I have created',
     },
     '/tokushoho': {
         title: '特定商取引法に基づく表記',
