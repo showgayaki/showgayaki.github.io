@@ -2,9 +2,9 @@
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 
-import type { MyAppInfo } from './MyApps.astro';
+import type { AppConfig } from '@/domain/app/types';
 
-type Props = { app: MyAppInfo };
+type Props = { app: AppConfig };
 const { app } = Astro.props;
 const imagePath = (value: string): string | void => {
     let fileNme = `badge_${value}`;
@@ -36,8 +36,8 @@ if (!images[`../images/${app.iconFile}`]) {
         alt={`${app.name}アイコン`}
     />
     <section class="app-detail">
-        <h3 class="app-detail__app-name">{app.name}</h3>
-        <p class="app-detail__description">{app.description}</p>
+        <h3 class="app-detail__app-name">{app.name.ja}</h3>
+        <p class="app-detail__description">{app.description.ja}</p>
         <ul class="app-detail__store-links store-link">
             {
                 app.stores.map(

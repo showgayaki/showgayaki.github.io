@@ -1,5 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { APPS } from '@/domain/app/registry';
+
+const privacyApps = Object.values(APPS).filter(
+    (app) => app.privacyKind !== undefined,
+);
 ---
 
 <BaseLayout mainClass="legal">
@@ -13,40 +18,28 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 
     <section class="legal__section">
         <ul class="legal__list legal__list--style-none">
-            <!-- アイコン入れたい -->
-            <!-- AppInfoとmetadataを統合した方がいい？ -->
-            <li class="legal__item legal__item--app">
-                <span class="legal__app-name">確認さん</span>
-                <span class="legal__lang-links">
-                    <a class="legal__link" href="/privacy/kakuninsan/ja">
-                        JA
-                    </a>
-                    <span class="legal__separator">|</span>
-                    <a class="legal__link" href="/privacy/kakuninsan/en">
-                        EN
-                    </a>
-                </span>
-            </li>
-            <li class="legal__item legal__item--app">
-                <span class="legal__app-name">お釣り計算機</span>
-                <span class="legal__lang-links">
-                    <a class="legal__link" href="/privacy/otsurin/ja"> JA </a>
-                    <span class="legal__separator">|</span>
-                    <a class="legal__link" href="/privacy/otsurin/en"> EN </a>
-                </span>
-            </li>
-            <li class="legal__item legal__item--app">
-                <span class="legal__app-name">70! カレンダー</span>
-                <span class="legal__lang-links">
-                    <a class="legal__link" href="/privacy/70-calendar/ja">
-                        JA
-                    </a>
-                    <span class="legal__separator">|</span>
-                    <a class="legal__link" href="/privacy/70-calendar/en">
-                        EN
-                    </a>
-                </span>
-            </li>
+            {
+                privacyApps.map((app) => (
+                    <li class="legal__item legal__item--app">
+                        <span class="legal__app-name">{app.name.ja}</span>
+                        <span class="legal__lang-links">
+                            <a
+                                class="legal__link"
+                                href={`/privacy/${app.id}/ja`}
+                            >
+                                JA
+                            </a>
+                            <span class="legal__separator">|</span>
+                            <a
+                                class="legal__link"
+                                href={`/privacy/${app.id}/en`}
+                            >
+                                EN
+                            </a>
+                        </span>
+                    </li>
+                ))
+            }
         </ul>
     </section>
 </BaseLayout>

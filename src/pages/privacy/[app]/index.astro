@@ -1,11 +1,9 @@
 ---
+import { buildAppIndexPaths } from '@/domain/app/paths';
 import PrivacyPage from './[lang].astro';
 
 export function getStaticPaths() {
-  return [
-    { params: { app: '70-calendar' } },
-    { params: { app: 'otsurin' } },
-  ];
+  return buildAppIndexPaths();
 }
 
 const { app } = Astro.params;
