@@ -26,11 +26,11 @@ export type LegalDict = {
     sections: LegalSection[];
 };
 
-type Props = { page: string,  dict: LegalDict };
-const { page, dict } = Astro.props as Props;
+type Props = { dict: LegalDict };
+const { dict } = Astro.props;
 ---
 
-<BaseLayout page={page} mainClass="legal">
+<BaseLayout mainClass="legal">
     <h2 class="legal__title">{dict.title}</h2>
 
     {

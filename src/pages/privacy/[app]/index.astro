@@ -1,0 +1,14 @@
+---
+import PrivacyPage from './[lang].astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { app: '70-calendar' } },
+    { params: { app: 'otsurin' } },
+  ];
+}
+
+const { app } = Astro.params;
+---
+
+<PrivacyPage app={app} lang='ja' />

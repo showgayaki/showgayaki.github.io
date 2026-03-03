@@ -1,11 +1,13 @@
-const ja = {
+import type { LegalDict } from '@/components/legal/LegalTemplate.astro';
+
+const ja = (appName: string): LegalDict => ({
     title: 'プライバシーポリシー',
 
     sections: [
         {
             title: 'はじめに',
             paragraphs: [
-                '当方は、当方が提供するアプリケーション（以下「アプリ」）におけるユーザーの個人情報の取扱いについて，以下の通りプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。本アプリのご使用によって、本ポリシーに同意していただいたものとみなします。'
+                `当方は、当方が提供するアプリケーション「${appName}」（以下「アプリ」）におけるユーザーの個人情報の取扱いについて，以下の通りプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。本アプリのご使用によって、本ポリシーに同意していただいたものとみなします。`
             ]
         },
         {
@@ -75,6 +77,6 @@ const ja = {
             contact: 'development@kanke.world'
         }
     ]
-};
+});
 
 export default ja;

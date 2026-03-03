@@ -1,11 +1,12 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
 
 const myEmail = import.meta.env.PUBLIC_MY_EMAIL;
+const page = Astro.url.pathname;
 ---
 
-<BaseLayout page="/terms/70-calendar" lang="ja" mainClass="legal">
-    <h2 class="legal__title">「70! カレンダー」利用規約</h2>
+<BaseLayout lang="ja" mainClass="legal">
+    <h2 class="legal__title">利用規約</h2>
 
     <p class="legal__explanation">
         本利用規約（以下「本規約」といいます。）は、当方が提供するアプリケーション「70!
@@ -138,5 +139,8 @@ const myEmail = import.meta.env.PUBLIC_MY_EMAIL;
         </p>
     </section>
 
-    <p class="legal__date">2026年3月1日 制定</p>
+    <section class="legal__section">
+        <p class="legal__date">2026年3月1日 制定</p>
+    </section>
+
 </BaseLayout>

@@ -30,6 +30,7 @@
     padding-left: 1.6rem;
     list-style: disc;
 }
+
 @mixin list-style-decimal {
     padding-left: 1.6rem;
     list-style: decimal;
@@ -68,6 +69,25 @@
         &--style-decimal {
             @include list-style-decimal;
         }
+    }
+
+    // もうちょっといい感じに並べたい
+    // space-between だと `JA | EN` が端にいっちゃう
+    &__item {
+        &--app {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &__lang-links {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    &__separator {
+        opacity: 0.6;
     }
 
     &__subsection {

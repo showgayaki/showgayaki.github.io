@@ -1,0 +1,44 @@
+---
+import LegalTemplate from '@/components/legal/LegalTemplate.astro';
+
+import kakuninsanJa from '@/i18n/privacy/mobile-common/ja';
+import kakuninsanEn from '@/i18n/privacy/mobile-common/en';
+import otsurinJa from '@/i18n/privacy/mobile-common/ja';
+import otsurinEn from '@/i18n/privacy/mobile-common/en';
+import calendarJa from '@/i18n/privacy/70-calendar/ja';
+import calendarEn from '@/i18n/privacy/70-calendar/en';
+
+import type { LegalDict } from '@/components/legal/LegalTemplate.astro';
+
+type Props = { app: string, lang: string };
+
+export function getStaticPaths() {
+  return [
+    { params: { app: 'kakuninsan', lang: 'ja' } },
+    { params: { app: 'kakuninsan', lang: 'en' } },
+    { params: { app: 'otsurin', lang: 'ja' } },
+    { params: { app: 'otsurin', lang: 'en' } },
+    { params: { app: '70-calendar', lang: 'ja' } },
+    { params: { app: '70-calendar', lang: 'en' } },
+  ];
+}
+
+const { app, lang } = Astro.params;
+
+let dict: LegalDict | undefined;
+if (app === 'kakuninsan') {
+  dict = lang === 'en' ? kakuninsanEn('確認さん') : kakuninsanJa('確認さん');
+}
+if (app === 'otsurin') {
+  dict = lang === 'en' ? otsurinEn('お釣り計算機') : otsurinJa('お釣り計算機');
+}
+if (app === '70-calendar') {
+  dict = lang === 'en' ? calendarEn : calendarJa;
+}
+
+if (!dict) {
+  throw new Error(`Unknown app or lang: ${app}/${lang}`);
+}
+---
+
+<LegalTemplate dict={dict} />

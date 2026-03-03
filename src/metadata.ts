@@ -21,6 +21,18 @@ export const siteMetadata: {[path: string]: PageMetadata} = {
         title: 'Privacy Policy',
         description: 'Privacy policy for apps I have created',
     },
+    '/privacy/70-calendar': {
+        title: 'プライバシーポリシー',
+        description: '「70! カレンダー」アプリに関するプライバシーポリシーです',
+    },
+    '/privacy/70-calendar/ja': {
+        title: 'プライバシーポリシー',
+        description: '「70! カレンダー」アプリに関するプライバシーポリシーです',
+    },
+    '/privacy/70-calendar/en': {
+        title: 'Privacy Policy',
+        description: 'Privacy policy for 70! Calendar app',
+    },
     '/tokushoho': {
         title: '特定商取引法に基づく表記',
         description: 'わたしがつくったアプリに関する特定商取引法に基づく表記です',
