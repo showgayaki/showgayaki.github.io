@@ -4,9 +4,10 @@
   "version": "0.0.1",
   "packageManager": "pnpm@9.12.3",
   "scripts": {
+    "generate:qr": "tsx scripts/generate-qr.ts",
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "pnpm run generate:qr && astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@types/qrcode": "^1.5.5",
-    "sass-embedded": "^1.80.6"
+    "sass-embedded": "^1.80.6",
+    "tsx": "^4.21.0"
   }
 }
