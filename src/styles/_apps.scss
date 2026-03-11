@@ -1,0 +1,16 @@
+.apps {
+    &__title {
+        margin-bottom: 1.6rem;
+    }
+
+    &__list {
+        margin-bottom: 40px;
+    }
+
+    @media screen and (min-width: 768px) {
+        &__list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+}

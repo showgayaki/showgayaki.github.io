@@ -1,0 +1,44 @@
+.app-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+
+    &__detail {
+        width: 60%;
+    }
+
+    &__app-name {
+        margin-bottom: .5rem;
+    }
+
+    &__description {
+        font-size: .75rem;
+        margin-bottom: 10px;
+    }
+
+    &__image {
+        width: 35%;
+        height: auto;
+        border: 1px solid #888;
+        border-radius: 20px;
+    }
+
+    &__stores {
+        display: flex;
+        justify-content: flex-start;
+        height: 40px;
+    }
+
+    &__store-image {
+        height: 100%;
+    }
+
+    @media screen and (min-width: 768px) {
+        width: 48%;
+
+        &:nth-child(odd) {
+            margin-right: 4%;
+        }
+    }
+}

@@ -6,15 +6,15 @@ import type { AppConfig } from '@/domain/app/types';
 
 type Props = { app: AppConfig };
 const { app } = Astro.props;
-const imagePath = (value: string): string | void => {
-    let fileNme = `badge_${value}`;
+const imagePath = (value: string): string => {
+    let fileName = `badge_${value}`;
 
     switch (value) {
         case 'google-play': {
-            return `${fileNme}.png`;
+            return `${fileName}.png`;
         }
         default: {
-            return `${fileNme}.svg`;
+            return `${fileName}.svg`;
         }
     }
 };
@@ -27,45 +27,39 @@ if (!images[`../images/${app.iconFile}`]) {
         `'${app.iconFile}' does not exist in glob: 'src/images/*.{jpeg,jpg,png,gif}'`,
     );
 }
+
+const stores = app.stores.filter((s) => s.url !== '');
 ---
 
-<li class="app-list__item app">
+<li class="app-card">
     <Image
-        class="app__image"
+        class="app-card__image"
         src={images[`../images/${app.iconFile}`]()}
-        alt={`${app.name}アイコン`}
+        alt={`${app.name.ja}アイコン`}
     />
-    <section class="app-detail">
-        <h3 class="app-detail__app-name">{app.name.ja}</h3>
-        <p class="app-detail__description">{app.description.ja}</p>
-        <ul class="app-detail__store-links store-link">
+    <section class="app-card__detail">
+        <h3 class="app-card__app-name">{app.name.ja}</h3>
+        <p class="app-card__description">{app.description.ja}</p>
+        <ul class="app-card__stores">
             {
-                app.stores.map(
-                    (store) =>
-                        function () {
-                            if (`${store.url}` != '') {
-                                return (
-                                    <Fragment>
-                                        <li class="store-link__item">
-                                            <a
-                                                class="store-link__item-link"
-                                                href={`${store.url}`}
-                                                target="_blank"
-                                            >
-                                                <Image
-                                                    class={`store-link__image store-link__image--${store.vendor}`}
-                                                    src={images[
-                                                        `../images/${imagePath(store.vendor)}`
-                                                    ]()}
-                                                    alt={`${store.vendor} Badge`}
-                                                />
-                                            </a>
-                                        </li>
-                                    </Fragment>
-                                );
-                            }
-                        },
-                )
+                stores.map((store) => (
+                    <li class="app-card__store">
+                        <a
+                            class="app-card__store-link"
+                            href={store.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <Image
+                                class={`app-card__store-image app-card__store-image--${store.vendor}`}
+                                src={images[
+                                    `../images/${imagePath(store.vendor)}`
+                                ]()}
+                                alt={`${store.vendor} Badge`}
+                            />
+                        </a>
+                    </li>
+                ))
             }
         </ul>
     </section>
