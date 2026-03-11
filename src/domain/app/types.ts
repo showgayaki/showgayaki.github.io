@@ -4,7 +4,7 @@ export type AppId =
     | 'kakuninsan'
     | 'otsurin'
     | 'sabakan'
-    // | '70-calendar'
+    | '70-calendar'
     ;
 
 export interface StoreLink {

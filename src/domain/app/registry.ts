@@ -64,23 +64,23 @@ export const APPS: Record<AppId, AppConfig> = {
         ],
     },
 
-    // '70-calendar': {
-    //     id: '70-calendar',
-    //     name: {
-    //         ja: '70! カレンダー',
-    //         en: '70! Calendar',
-    //     },
-    //     description: {
-    //         ja: 'Googleカレンダークライアント',
-    //         en: 'Google Calendar client',
-    //     },
-    //     iconFile: 'icon_70-calendar.png',
-    //     stores: [
-    //         {
-    //             vendor: 'app-store',
-    //             url: '',
-    //         },
-    //     ],
-    //     privacyKind: '70-calendar',
-    // },
+    '70-calendar': {
+        id: '70-calendar',
+        name: {
+            ja: '70! カレンダー',
+            en: '70! Calendar',
+        },
+        description: {
+            ja: 'Googleカレンダークライアント',
+            en: 'Google Calendar client',
+        },
+        iconFile: 'icon_70-calendar.png',
+        stores: [
+            {
+                vendor: 'app-store',
+                url: '',
+            },
+        ],
+        privacyKind: '70-calendar',
+    },
 };
