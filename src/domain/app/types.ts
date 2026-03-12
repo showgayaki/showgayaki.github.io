@@ -1,5 +1,7 @@
 export type Lang = 'ja' | 'en';
 
+export type LegalType = 'privacy' | 'terms' | 'tokushoho';
+
 export type AppId =
     | 'kakuninsan'
     | 'otsurin'

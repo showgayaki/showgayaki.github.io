@@ -1,12 +1,12 @@
 ---
 import { buildAppIndexPaths } from '@/domain/app/paths';
-import PrivacyPage from './[lang].astro';
+import TermPage from './[lang].astro';
 
 export function getStaticPaths() {
-  return buildAppIndexPaths('privacy');
+  return buildAppIndexPaths('terms');
 }
 
 const { app } = Astro.params;
 ---
 
-<PrivacyPage app={app} lang='ja' />
+<TermPage app={app} lang='ja' />

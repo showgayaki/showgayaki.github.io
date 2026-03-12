@@ -1,11 +1,22 @@
 import { APPS } from './registry';
-import type { Lang } from './types';
+import type { Lang, LegalType, AppConfig } from './types';
 
 const LANGS: Lang[] = ['ja', 'en'];
 
-export function buildPrivacyPaths() {
+function filterByLegalType(app: AppConfig, legalType: LegalType) {
+    switch (legalType) {
+        case 'privacy':
+            return app.privacyKind;
+        case 'terms':
+            return app.termsKind;
+        // case 'tokushoho':
+        //     return;
+    }
+}
+
+export function buildPaths(legalType: LegalType) {
     return Object.values(APPS)
-        .filter(app => app.privacyKind !== undefined)
+        .filter(app => filterByLegalType(app, legalType) !== undefined)
         .flatMap(app =>
             LANGS.map(lang => ({
                 params: {
@@ -16,9 +27,9 @@ export function buildPrivacyPaths() {
         );
 }
 
-export function buildAppIndexPaths() {
+export function buildAppIndexPaths(legalType: LegalType) {
     return Object.values(APPS)
-        .filter(app => app.privacyKind !== undefined)
+        .filter(app => filterByLegalType(app, legalType) !== undefined)
         .map(app => ({
             params: { app: app.id },
         }));

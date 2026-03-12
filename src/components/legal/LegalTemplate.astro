@@ -14,11 +14,12 @@ type LegalSubsection = {
 };
 
 type LegalSection = {
-    title: string;
+    title?: string;
     paragraphs?: string[];
     list?: string[];
     subsections?: LegalSubsection[];
     contact?: string;
+    date?: string;
 };
 
 export type LegalDict = {
@@ -28,6 +29,8 @@ export type LegalDict = {
 
 type Props = { dict: LegalDict };
 const { dict } = Astro.props;
+
+const myEmail = import.meta.env.PUBLIC_MY_EMAIL;
 ---
 
 <BaseLayout mainClass="legal">
@@ -36,7 +39,9 @@ const { dict } = Astro.props;
     {
         dict.sections.map((section) => (
             <section class="legal__section">
-                <h3 class="legal__section-title">{section.title}</h3>
+                {section.title && (
+                    <h3 class="legal__section-title">{section.title}</h3>
+                )}
 
                 {section.paragraphs?.map((p) => (
                     <p class="legal__explanation">{p}</p>
@@ -83,10 +88,18 @@ const { dict } = Astro.props;
 
                 {section.contact && (
                     <p class="legal__explanation">
-                        E-mail:{' '}
-                        <a href={`mailto:${section.contact}`}>
-                            {section.contact}
+                        {section.contact}
+                        <br />
+                        E-mail:
+                        <a href={`mailto:${myEmail}`}>
+                            {myEmail}
                         </a>
+                    </p>
+                )}
+
+                {section.date && (
+                    <p class="legal__date">
+                        {section.date}
                     </p>
                 )}
             </section>

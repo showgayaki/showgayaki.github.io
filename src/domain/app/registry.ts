@@ -82,5 +82,6 @@ export const APPS: Record<AppId, AppConfig> = {
             },
         ],
         privacyKind: '70-calendar',
+        termsKind: '70-calendar',
     },
 };

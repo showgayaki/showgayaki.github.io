@@ -7,13 +7,11 @@ import type { AppId, Lang } from '@/domain/app/types';
 import type { LegalDict } from '@/components/legal/LegalTemplate.astro';
 
 // i18n
-import mobileCommonJa from '@/i18n/privacy/mobile-common/ja';
-import mobileCommonEn from '@/i18n/privacy/mobile-common/en';
-import calendarJa from '@/i18n/privacy/70-calendar/ja';
-import calendarEn from '@/i18n/privacy/70-calendar/en';
+import calendarJa from '@/i18n/terms/70-calendar/ja';
+import calendarEn from '@/i18n/terms/70-calendar/en';
 
 export function getStaticPaths() {
-    return buildPaths('privacy');
+    return buildPaths('terms');
 }
 
 type Props = { app: string; lang: string };
@@ -28,18 +26,13 @@ const appConfig = APPS[app];
 const appName = appConfig.name[lang];
 
 let dict: LegalDict | undefined;
-switch (appConfig.privacyKind) {
-    case 'mobile-common':
-        dict =
-            lang === 'en' ? mobileCommonEn(appName) : mobileCommonJa(appName);
-        break;
-
+switch (appConfig.termsKind) {
     case '70-calendar':
         dict = lang === 'en' ? calendarEn : calendarJa;
         break;
 
     default:
-        throw new Error(`Unknown privacy kind for app: ${app}`);
+        throw new Error(`Unknown terms kind for app: ${app}`);
 }
 
 if (!dict) {

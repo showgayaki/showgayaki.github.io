@@ -1,5 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { APPS } from '@/domain/app/registry';
+
+const termsApps = Object.values(APPS).filter(
+    (app) => app.termsKind !== undefined,
+);
 ---
 
 <BaseLayout mainClass="legal">
@@ -13,11 +18,28 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 
     <section class="legal__section">
         <ul class="legal__list">
-            <li class="legal__item">
-                <a class="legal__link" href="/terms/70-calendar/">
-                    70! カレンダー
-                </a>
-            </li>
+            {
+                termsApps.map((app) => (
+                    <li class="legal__item legal__item--app">
+                        <span class="legal__app-name">{app.name.ja}</span>
+                        <span class="legal__lang-links">
+                            <a
+                                class="legal__link"
+                                href={`/terms/${app.id}/ja`}
+                            >
+                                JA
+                            </a>
+                            <span class="legal__separator">|</span>
+                            <a
+                                class="legal__link"
+                                href={`/terms/${app.id}/en`}
+                            >
+                                EN
+                            </a>
+                        </span>
+                    </li>
+                ))
+            }
         </ul>
     </section>
 </BaseLayout>
