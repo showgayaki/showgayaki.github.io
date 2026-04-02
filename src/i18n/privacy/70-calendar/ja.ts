@@ -50,14 +50,19 @@ const ja = {
             title: 'その他の収集する情報',
             subsections: [
                 {
-                    title: 'アプリケーションの利用状況',
+                    title: 'セキュリティと不正利用の防止',
                     paragraphs: [
-                        '利用状況の解析（クラッシュレポートや利便性向上）のためにGoogle Firebase Analyticsを使用する場合があります。取得する情報は個人を特定するものではありません。'
+                        '本アプリでは、正当なリクエストであることを検証し、不正なクライアントからのアクセスを制限するために、Google Firebase App Check を利用しています。これにより、アプリやデバイスに関する技術的情報（Firebase ユーザー エージェント等）が自動的に送信される場合がありますが、これらの情報は個人を特定するものではありません。',
+                        '詳しくは下記をご参照ください。',
                     ],
                     links: [
                         {
-                            label: 'Firebase Analytics（Google Inc.）',
-                            href: 'https://firebase.google.com/support/privacy?hl=ja'
+                            label: 'Firebase App Check',
+                            href: 'https://firebase.google.com/docs/ios/app-store-data-collection?hl=ja#firebaseappcheck'
+                        },
+                        {
+                            label: 'Firebase ユーザー エージェント',
+                            href: 'https://firebase.google.com/docs/ios/app-store-data-collection?hl=ja#firebase-user-agent'
                         }
                     ]
                 },

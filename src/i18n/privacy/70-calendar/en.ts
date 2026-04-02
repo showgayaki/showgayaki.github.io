@@ -50,14 +50,19 @@ const en = {
             title: 'Other Information Collected',
             subsections: [
                 {
-                    title: 'App Usage Information',
+                    title: 'Security and Fraud Prevention',
                     paragraphs: [
-                        'We may use Google Firebase Analytics to analyze app usage (such as crash reports and usability improvements). The information collected does not personally identify users.'
+                        'The App utilizes Google Firebase App Check to verify that requests are legitimate and to restrict access from unauthorized clients. As a result, technical information regarding the app and your device (such as the Firebase User Agent) may be sent automatically; however, this information does not personally identify any user.',
+                        'For further details, please refer to the following:'
                     ],
                     links: [
                         {
-                            label: 'Firebase Analytics (Google Inc.)',
-                            href: 'https://firebase.google.com/support/privacy?hl=en'
+                            label: 'Firebase App Check',
+                            href: 'https://firebase.google.com/docs/ios/app-store-data-collection?hl=en#firebaseappcheck'
+                        },
+                        {
+                            label: 'Firebase User Agent',
+                            href: 'https://firebase.google.com/docs/ios/app-store-data-collection?hl=en#firebase-user-agent'
                         }
                     ]
                 },
