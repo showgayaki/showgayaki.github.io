@@ -1,14 +1,13 @@
 import { APPS } from './registry';
-import type { Lang, LegalType, AppConfig } from './types';
-
-const LANGS: Lang[] = ['ja', 'en'];
+import { LANGS } from './types';
+import type { LegalType, AppConfig } from './types';
 
 function filterByLegalType(app: AppConfig, legalType: LegalType) {
     switch (legalType) {
         case 'privacy':
-            return app.privacyKind;
+            return app.privacy;
         case 'terms':
-            return app.termsKind;
+            return app.terms;
         // case 'tokushoho':
         //     return;
     }

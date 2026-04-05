@@ -1,4 +1,7 @@
+import { LEGALS } from './types';
 import type { AppConfig, AppId } from './types';
+
+export const PAGES = LEGALS;
 
 export const APPS: Record<AppId, AppConfig> = {
     kakuninsan: {
@@ -18,7 +21,7 @@ export const APPS: Record<AppId, AppConfig> = {
                 url: 'https://apps.apple.com/us/app/確認さん/id6476134454',
             },
         ],
-        privacyKind: 'mobile-common',
+        privacy: 'mobile-common',
     },
 
     otsurin: {
@@ -38,7 +41,7 @@ export const APPS: Record<AppId, AppConfig> = {
                 url: 'https://apps.apple.com/jp/app/お釣り計算機/id6479202932',
             },
         ],
-        privacyKind: 'mobile-common',
+        privacy: 'mobile-common',
     },
 
     sabakan: {
@@ -81,7 +84,7 @@ export const APPS: Record<AppId, AppConfig> = {
                 url: '',
             },
         ],
-        privacyKind: '70-calendar',
-        termsKind: '70-calendar',
+        privacy: '70-calendar',
+        terms: '70-calendar',
     },
 };

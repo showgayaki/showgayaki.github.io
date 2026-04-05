@@ -1,0 +1,23 @@
+@mixin icon-trailing($icon) {
+    position: relative;
+
+    &::after {
+        font-family: "Font Awesome 5 Free";
+        content: $icon;
+        font-weight: 900;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform .3s;
+        pointer-events: none
+    }
+}
+
+.trailing-arrow-right {
+    @include icon-trailing("\f105");
+}
+
+.trailing-arrow-bottom {
+    @include icon-trailing("\f107");
+}

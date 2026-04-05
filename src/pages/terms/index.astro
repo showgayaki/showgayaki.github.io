@@ -3,7 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { APPS } from '@/domain/app/registry';
 
 const termsApps = Object.values(APPS).filter(
-    (app) => app.termsKind !== undefined,
+    (app) => app.terms !== undefined,
 );
 ---
 

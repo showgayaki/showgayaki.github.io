@@ -1,6 +1,8 @@
-export type Lang = 'ja' | 'en';
+export const LANGS = [ 'ja', 'en' ] as const;
+export type Lang = typeof LANGS[number];
 
-export type LegalType = 'privacy' | 'terms' | 'tokushoho';
+export const LEGALS = [ 'privacy', 'terms', 'tokushoho' ] as const;
+export type LegalType = typeof LEGALS[number];
 
 export type AppId =
     | 'kakuninsan'
@@ -20,6 +22,6 @@ export interface AppConfig {
     description: Record<Lang, string>;
     iconFile: string;
     stores: StoreLink[];
-    privacyKind?: 'mobile-common' | '70-calendar';
-    termsKind?: '70-calendar';
+    privacy?: 'mobile-common' | AppId;
+    terms?: AppId;
 }

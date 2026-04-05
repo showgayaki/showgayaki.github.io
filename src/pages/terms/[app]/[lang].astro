@@ -26,7 +26,7 @@ const appConfig = APPS[app];
 const appName = appConfig.name[lang];
 
 let dict: LegalDict | undefined;
-switch (appConfig.termsKind) {
+switch (appConfig.terms) {
     case '70-calendar':
         dict = lang === 'en' ? calendarEn : calendarJa;
         break;

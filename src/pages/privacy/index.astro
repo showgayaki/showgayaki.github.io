@@ -3,7 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { APPS } from '@/domain/app/registry';
 
 const privacyApps = Object.values(APPS).filter(
-    (app) => app.privacyKind !== undefined,
+    (app) => app.privacy !== undefined,
 );
 ---
 

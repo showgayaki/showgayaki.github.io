@@ -28,7 +28,7 @@ const appConfig = APPS[app];
 const appName = appConfig.name[lang];
 
 let dict: LegalDict | undefined;
-switch (appConfig.privacyKind) {
+switch (appConfig.privacy) {
     case 'mobile-common':
         dict =
             lang === 'en' ? mobileCommonEn(appName) : mobileCommonJa(appName);

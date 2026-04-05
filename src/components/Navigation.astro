@@ -1,11 +1,65 @@
 ---
 import { Image } from 'astro:assets';
-
-import Hamburger from '@/images/hamburger.png';
 import QRCode from '@/images/qr.png';
+
+import { siteMetadata } from '@/metadata';
+import { PAGES, APPS } from '@/domain/app/registry';
+
+const pages = Object.fromEntries(
+    PAGES.map((legal) => {
+        if (legal === 'tokushoho') {
+            return [legal, []];
+        }
+
+        const ids = Object.values(APPS)
+            .filter((app) => app[legal])
+            .map((app) => app.id);
+
+        return [legal, ids];
+    }),
+);
 ---
 
 <nav id="navigation" class="navigation">
-    <Image src={Hamburger} alt="hamburger" id="hamburgerImage" class="navigation__image navigation__image--hanburger show" />
-    <Image src={QRCode} alt="QR Code" id="qrCode" class="navigation__image navigation__image--qr-code" />
+    <div class="navigation__menu">
+        {
+            Object.keys(pages).map((page) =>
+                pages[page].length === 0 ? (
+                    <details class="navigation__item">
+                        <summary class="navigation__title trailing-arrow-right">
+                            <a href={`/${page}`} class="navigation__title-link">
+                                {siteMetadata[`/${page}`]?.title ?? page}
+                            </a>
+                        </summary>
+                    </details>
+                ) : (
+                    <details class="navigation__item">
+                        <summary class="navigation__title trailing-arrow-bottom">
+                            {siteMetadata[`/${page}`]?.title ?? page}
+                        </summary>
+                        <ul class="navigation__submenu">
+                            {pages[page].map((id) => (
+                                <li class="navigation__submenu-item">
+                                    <span class="navigation__app-name">
+                                        {APPS[id].name.ja}
+                                    </span>
+                                    <span class="navigation__links">
+                                        <a href={`/${page}/${id}/ja`} class="navigation__link">JA</a>
+                                        <span>|</span>
+                                        <a href={`/${page}/${id}/en`} class="navigation__link">EN</a>
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </details>
+                ),
+            )
+        }
+    </div>
+    <Image
+        src={QRCode}
+        alt="QR Code"
+        id="qrCode"
+        class="navigation__image navigation__image--qr-code"
+    />
 </nav>

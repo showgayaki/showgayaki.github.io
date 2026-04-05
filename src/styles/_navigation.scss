@@ -1,3 +1,5 @@
+@use 'base/variables' as *;
+
 .navigation {
     position: fixed;
     top: 0;
@@ -5,31 +7,92 @@
     z-index: 1;
 
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     height: 100vh;
-    background-color: #eee;
+    padding: var(--header-height) 15px 15px;
+    background-color: #fff;
     transition: all .5s;
+
+    font-size: 1.3rem;
+    color: $color-primary;
 
     &.show {
         -webkit-transform: translateX(-100vw);
         transform: translateX(-100vw);
     }
 
+    &__item {
+        padding: 0 15px;
+
+        &::details-content {
+            transition:
+                height .3s,
+                opacity .3s,
+                content-visibility .3s allow-discrete;
+            height: 0;
+            opacity: 0;
+            overflow: clip;
+        }
+
+        &[open] {
+            & .navigation__title::after {
+                transform: translateY(-50%) rotate(180deg);
+            }
+
+            &::details-content {
+                height: auto;
+                opacity: 1;
+            }
+        }
+    }
+
+    &__title {
+        padding: 0.8rem 0;
+        list-style: none;
+        cursor: pointer;
+    }
+
+    &__title-link {
+        display: block;
+        width: 100%;
+        text-decoration: none;
+
+        &:visited {
+            color: $color-primary;
+        }
+    }
+
+    &__submenu {
+        padding: 0 1rem;
+        list-style: none;
+        font-size: 1.1rem;
+    }
+
+    &__submenu-item {
+        display: flex;
+        justify-content: space-between;
+        padding: .2rem 0;
+    }
+
+    &__links {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+     &__image {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+
     &__image {
-        width: 80%;
+        width: 30%;
         height: auto;
         margin: 0 auto;
 
         &--hanburger {
-            display: none;
-
-            &.show {
-                display: block;
-            }
-        }
-
-        &--qr-code {
             display: none;
 
             &.show {

@@ -1,5 +1,6 @@
 @use 'base/reset';
 @use 'base/base';
+@use 'components/icon';
 
 @use 'header';
 @use 'navigation';
@@ -10,3 +11,10 @@
 @use 'apps';
 @use 'app-card';
 @use 'legal';
+
+:root {
+    --header-height: 60px;
+    // interpolate-size: アコーディオン用
+    // height:0（数値型） → auto（文字型） のアニメーションを可能にするための指定
+    interpolate-size: allow-keywords;
+}
