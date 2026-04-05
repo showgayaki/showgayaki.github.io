@@ -1,7 +1,7 @@
 .app-card {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 10px;
     margin-bottom: 30px;
 
     &__detail {
@@ -26,11 +26,22 @@
 
     &__stores {
         display: flex;
-        justify-content: flex-start;
-        height: 40px;
+        gap: 6px;
+        align-items: center;
+    }
+
+    &__store {
+        flex-shrink: 0;
+    }
+
+    &__store-link {
+        display: flex;
+        align-items: center;
+        height: 32px;
     }
 
     &__store-image {
+        width: auto;
         height: 100%;
     }
 
@@ -39,6 +50,10 @@
 
         &:nth-child(odd) {
             margin-right: 4%;
+        }
+
+        &__stores {
+            height: 40px;
         }
     }
 }
