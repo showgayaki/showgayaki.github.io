@@ -16,7 +16,13 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
             return;
         } else if (navigation?.contains(target)) {
-            // ナビゲーション内のクリックは何もしない
+            // ナビゲーション内でリンクがクリックされたら閉じる
+            if ((target as HTMLElement).closest('a')) {
+                hamburgerMenu?.classList.remove('expanded');
+                navigation?.classList.remove('show');
+            }
+
+            // リンク以外は何もしない
             return;
         }
 
