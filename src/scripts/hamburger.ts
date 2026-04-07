@@ -3,6 +3,18 @@ window.addEventListener('DOMContentLoaded', (e) => {
     const navigation = document.getElementById('navigation');
     const hamburgerMenu = document.getElementById('hamburgerMenu');
 
+    const closeNavigation = () => {
+        hamburgerMenu?.classList.remove('expanded');
+        navigation?.classList.remove('show');
+
+        // openになっているdetailsを全部閉じる
+        navigation
+            ?.querySelectorAll<HTMLDetailsElement>('details[open]')
+            .forEach((el) => {
+                el.open = false;
+            });
+    };
+
     // ハンバーガー以外をクリックしたら閉じるために、クリックイベントを全部取ります
     document.addEventListener('click', (e) => {
         const target = e.target as HTMLElement;
@@ -18,8 +30,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
         } else if (navigation?.contains(target)) {
             // ナビゲーション内でリンクがクリックされたら閉じる
             if ((target as HTMLElement).closest('a')) {
-                hamburgerMenu?.classList.remove('expanded');
-                navigation?.classList.remove('show');
+                closeNavigation();
             }
 
             // リンク以外は何もしない
@@ -27,7 +38,6 @@ window.addEventListener('DOMContentLoaded', (e) => {
         }
 
         // それ以外をクリックしたら閉じる
-        hamburgerMenu?.classList.remove('expanded');
-        navigation?.classList.remove('show');
+        closeNavigation();
     });
 });
