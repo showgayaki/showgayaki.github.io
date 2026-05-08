@@ -27,6 +27,25 @@ const en = {
                     ]
                 },
                 {
+                    title: 'Data Protection',
+                    paragraphs: [
+                        'All communication between the App and Google APIs is encrypted using HTTPS (TLS). Access to your Google Account is controlled via OAuth, and the App is limited to only the scopes that you have explicitly consented to.'
+                    ]
+                },
+                {
+                    title: 'Data Retention and Deletion',
+                    paragraphs: [
+                        'The App does not store Google Calendar data on external servers, so we hold no Google user data. Data is processed in real time and managed solely on Google\'s servers.',
+                        'You can revoke the App\'s access to your Google Account at any time through the Google Account permissions page below. Once access is revoked, the App will no longer be able to access any of your Google Account data.'
+                    ],
+                    links: [
+                        {
+                            label: 'Google Account Permissions',
+                            href: 'https://myaccount.google.com/permissions'
+                        }
+                    ]
+                },
+                {
                     title: 'No Advertising Use',
                     paragraphs: [
                         'User data obtained through Google APIs is never used for advertising purposes, including ad targeting or providing ads to third parties.'
