@@ -44,5 +44,17 @@ export const siteMetadata: {[path: string]: PageMetadata} = {
     '/terms/70-calendar': {
         title: '「70! カレンダー」利用規約',
         description: '「70! カレンダー」の利用規約です',
-    }
+    },
+    '/apps/70-calendar': {
+        title: '70! カレンダー',
+        description: '70! カレンダーは、iOS・macOS向けのGoogleカレンダークライアントアプリです。',
+    },
+    '/apps/70-calendar/en': {
+        title: '70! Calendar',
+        description: '70! Calendar is a Google Calendar client app for iOS and macOS.',
+    },
+    '/apps/70-calendar/ja': {
+        title: '70! カレンダー',
+        description: '70! カレンダーは、iOS・macOS向けのGoogleカレンダークライアントアプリです。',
+    },
 }

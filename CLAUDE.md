@@ -33,6 +33,8 @@ pnpm preview      # ビルド後の成果物をプレビュー
 - `src/pages/privacy/[app]/[lang].astro` — アプリ別・言語別プライバシーポリシー
 - `src/pages/privacy/[app]/index.astro` — `/privacy/{appId}` でデフォルト言語にリダイレクト
 - `src/pages/terms/[app]/[lang].astro` — アプリ別・言語別利用規約
+- `src/pages/apps/{appId}/[lang].astro` — アプリ別・言語別アプリ紹介ページ（Google OAuth 審査用等）
+- `src/pages/apps/{appId}/index.astro` — `/apps/{appId}` でデフォルト言語（`ja`）にリダイレクト
 - `src/pages/api/` — 静的 JSON API（`settings.json`、`emoji.json`）
 
 ### i18n
@@ -54,6 +56,33 @@ SCSS で記述。エントリポイントは `src/styles/style.scss`。個別コ
 ### QR コード
 
 `scripts/generate-qr.ts` がビルド前に実行され、`astro.config.mjs` の `site` URL から QR コード画像を `src/images/qr.png` に生成する。
+
+### Astro の型推論に関する注意
+
+`[lang].astro` のような動的ルートページを別ページから component として import して使う場合（例: `index.astro` で `<AppPage lang='ja' />`）、`getStaticPaths` の実装に注意が必要。
+
+**NG**: `LANGS.map()` を使うと Astro の型推論が壊れ、呼び出し元で `lang` prop が `never` 型になる。
+
+```ts
+// NG — Astro の型推論が壊れる
+export function getStaticPaths() {
+    return LANGS.map(lang => ({ params: { lang } }));
+}
+```
+
+**OK**: リテラル配列を使う。
+
+```ts
+// OK
+export function getStaticPaths() {
+    return [
+        { params: { lang: 'en' } },
+        { params: { lang: 'ja' } },
+    ];
+}
+```
+
+`buildPaths()` ヘルパー（`privacy`/`terms` で使用）は呼び出し元が `index.astro` からの component import ではないため問題なし。
 
 ## Adding a New App
 

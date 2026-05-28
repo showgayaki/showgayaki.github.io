@@ -1,0 +1,30 @@
+---
+import LegalTemplate from '@/components/legal/LegalTemplate.astro';
+import type { LegalDict } from '@/components/legal/LegalTemplate.astro';
+import type { Lang } from '@/domain/app/types';
+
+import en from '@/i18n/apps/70-calendar/en';
+import ja from '@/i18n/apps/70-calendar/ja';
+
+export function getStaticPaths() {
+    return [
+        { params: { lang: 'en' } },
+        { params: { lang: 'ja' } },
+    ];
+}
+
+type Props = { lang: Lang };
+
+const routeParams = Astro.params as Partial<{ lang: Lang }>;
+const props = Astro.props as Partial<Props>;
+const lang = (routeParams.lang ?? props.lang) as Lang;
+
+let dict: LegalDict;
+switch (lang) {
+    case 'en': dict = en; break;
+    case 'ja': dict = ja; break;
+    default: throw new Error(`Unknown lang: ${lang}`);
+}
+---
+
+<LegalTemplate dict={dict} />
