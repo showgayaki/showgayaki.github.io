@@ -13,7 +13,7 @@ const en: LegalDict = {
                     title: 'Key Features',
                     list: [
                         'Sign in with your Google account to view, create, and edit your Google Calendar events',
-                        'Enjoy a more comfortable calendar experience that addresses the limitations of the stock Google Calendar app',
+                        'Smoother event viewing and editing. Smoother copy & paste. Smoother daily schedule management.',
                     ],
                 },
                 {

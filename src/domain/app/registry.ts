@@ -74,7 +74,7 @@ export const APPS: Record<AppId, AppConfig> = {
             en: '70! Calendar',
         },
         description: {
-            ja: '純正Googleカレンダーの不満を解消するためのカレンダークライアントアプリです',
+            ja: 'Googleカレンダークライアントアプリです',
             en: 'A calendar client app designed to address the frustrations of the stock Google Calendar app',
         },
         iconFile: 'icon_70-calendar.png',
