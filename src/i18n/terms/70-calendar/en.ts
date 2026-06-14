@@ -87,7 +87,7 @@ const en = {
         },
         {
             title: 'Article 11 (Contact)',
-            contact: 'For inquiries regarding the App, please contact us via the App Store review section or the email address below.',
+            paragraphs: ['For inquiries regarding the App, please contact us via the App Store review section or the email address below.'],
         },
         {
             date: 'Established: March 1, 2026',

@@ -74,7 +74,7 @@ const ja = (appName: string): LegalDict => ({
         },
         {
             title: 'お問い合わせ先',
-            contact: 'development@kanke.world'
+            paragraphs: ['E-mail: development@kanke.world']
         }
     ]
 });

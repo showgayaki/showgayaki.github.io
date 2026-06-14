@@ -9,6 +9,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
     site: 'https://kanke.world',
     outDir: './docs',
+    trailingSlash: 'never',
+    build: {
+        format: 'file',
+    },
     server: {
         host: true,
     },
