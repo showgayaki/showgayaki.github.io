@@ -108,6 +108,10 @@ const en = {
             paragraphs: [
                 'We may revise this Privacy Policy without prior notice in response to changes in laws or service content.'
             ]
+        },
+        {
+            title: 'Contact',
+            paragraphs: ['E-mail: development@kanke.world']
         }
     ]
 };

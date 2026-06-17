@@ -108,6 +108,10 @@ const ja = {
             paragraphs: [
                 '当方は、法令の変更またはサービス内容の変更等に応じて、本ポリシーを予告なく変更することがあります。'
             ]
+        },
+        {
+            title: 'お問い合わせ先',
+            paragraphs: ['E-mail: development@kanke.world']
         }
     ]
 };
