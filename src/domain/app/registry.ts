@@ -81,7 +81,7 @@ export const APPS: Record<AppId, AppConfig> = {
         stores: [
             {
                 vendor: 'app-store',
-                url: '',
+                url: 'https://apps.apple.com/jp/app/70-calendar/id6758545603',
             },
         ],
         privacy: '70-calendar',
