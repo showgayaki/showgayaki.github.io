@@ -7,7 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://kanke.world',
+    site: 'https://www.kanke.world',
     outDir: './docs',
     trailingSlash: 'never',
     build: {
