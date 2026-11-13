@@ -22,19 +22,21 @@ pnpm preview      # ビルド後の成果物をプレビュー
 
 新しいアプリを追加する際の起点は `src/domain/app/` 以下:
 
-- **`types.ts`** — `AppId`、`AppConfig`、`Lang`（`ja`/`en`）、`LegalType` の型定義
+- **`types.ts`** — `AppId`、`AppConfig`、`Lang`（`ja`/`en`）、`LegalType` の型定義と、法的文書の見出し `LEGAL_TITLES`（ナビゲーション・一覧ページで使用）
 - **`registry.ts`** — `APPS` オブジェクト。全アプリの設定（名前・説明・アイコン・ストアリンク・プライバシー種別）をここに追加する
 - **`paths.ts`** — `getStaticPaths()` 用のパス生成ヘルパー
-- **`metadata.ts`** — 動的ページ用メタデータ生成
+- **`metadata.ts`** — `PageMetadata` 型と、アプリ別の法的文書ページのメタデータ生成（`buildAppLegalMetadata()`。タイトルに `registry.ts` のアプリ名を付ける）
 
 ### ページルーティング
 
 - `src/pages/index.astro` — トップページ（アプリ一覧）
 - `src/pages/privacy/[app]/[lang].astro` — アプリ別・言語別プライバシーポリシー
-- `src/pages/privacy/[app]/index.astro` — `/privacy/{appId}` でデフォルト言語にリダイレクト
+- `src/pages/privacy/[app]/index.astro` — `/privacy/{appId}`。リダイレクトはせず、`[lang].astro` を component として import してデフォルト言語（`ja`）の内容を表示する。canonical は `/privacy/{appId}/ja`
 - `src/pages/terms/[app]/[lang].astro` — アプリ別・言語別利用規約
+- `src/pages/terms/[app]/index.astro` — `/terms/{appId}`。`privacy` と同様
 - `src/pages/apps/{appId}/[lang].astro` — アプリ別・言語別アプリ紹介ページ（Google OAuth 審査用等）
-- `src/pages/apps/{appId}/index.astro` — `/apps/{appId}` でデフォルト言語（`ja`）にリダイレクト
+- `src/pages/apps/{appId}/index.astro` — `/apps/{appId}`。`privacy` と同様
+- `src/pages/404.astro` — ターミナル風の 404 ページ（ヘッダー・フッターなし、noindex）
 - `src/pages/api/` — 静的 JSON API（`settings.json`、`emoji.json`）
 
 ### i18n
@@ -43,7 +45,9 @@ pnpm preview      # ビルド後の成果物をプレビュー
 
 ### レイアウト
 
-`src/layouts/BaseLayout.astro` がすべてのページの共通レイアウト。`src/metadata.ts` の `siteMetadata` でパスごとのページタイトル・説明を管理する（動的ルートは `src/domain/app/metadata.ts` で生成）。
+`src/layouts/BaseLayout.astro` がすべてのページの共通レイアウト。各ページが `metadata`（タイトル・説明）と `lang` を props で渡す。固定ページはページ内に直接書き、アプリ別の法的文書ページは `buildAppLegalMetadata()` で生成する。
+
+canonical・`og:url` は、アクセスされたパスから `.html` を除いて生成する（ビルド時は `build.format: 'file'` によりパスが `.html` 付きになるため）。`[lang].astro` は常に言語付きのパスを `canonicalPath` として渡すので、言語なしの URL（`index.astro`）の canonical も言語付きの URL になる。
 
 ### スタイル
 
@@ -91,4 +95,4 @@ export function getStaticPaths() {
 3. アプリアイコン画像を `src/images/` に配置
 4. プライバシーポリシーが必要な場合は `src/i18n/privacy/{appId}/{ja,en}.ts` を作成し、`AppConfig.privacy` に `appId` を設定
 5. 利用規約が必要な場合は `src/i18n/terms/{appId}/{ja,en}.ts` を作成し、`AppConfig.terms` に `appId` を設定
-6. `src/metadata.ts` に動的ページ以外のメタデータを追加
+6. プライバシーポリシー・利用規約のメタデータは自動生成されるため追加不要。アプリ紹介ページ（`src/pages/apps/{appId}/`）を作る場合は、説明文をページに直接書き、`canonicalPath` に言語付きのパスを渡す
