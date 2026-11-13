@@ -55,11 +55,6 @@ $terminal-os-list: windows, linux;
     }
 }
 
-// スマホの 100vh はアドレスバーを除いた表示領域より高く、不要なスクロールと下寄りの表示が起きるため、小さいビューポートの高さを基準にする
-body:has(> .not-found) {
-    min-height: 100svh;
-}
-
 .not-found {
     display: flex;
     flex-direction: column;
