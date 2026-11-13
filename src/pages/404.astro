@@ -1,0 +1,96 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TerminalPrompt from '@/components/TerminalPrompt.astro';
+
+// ドット文字の字形 (5x7)。# がドット、. が空白
+const GLYPHS: Record<string, string[]> = {
+    '4': ['...#.', '..##.', '.#.#.', '#..#.', '#####', '...#.', '...#.'],
+    '0': ['.###.', '#...#', '#..##', '#.#.#', '##..#', '#...#', '.###.'],
+    N: ['#...#', '##..#', '#.#.#', '#..##', '#...#', '#...#', '#...#'],
+    O: ['.###.', '#...#', '#...#', '#...#', '#...#', '#...#', '.###.'],
+    T: ['#####', '..#..', '..#..', '..#..', '..#..', '..#..', '..#..'],
+    F: ['#####', '#....', '#....', '####.', '#....', '#....', '#....'],
+    U: ['#...#', '#...#', '#...#', '#...#', '#...#', '#...#', '.###.'],
+    D: ['####.', '#...#', '#...#', '#...#', '#...#', '#...#', '####.'],
+    ' ': ['..', '..', '..', '..', '..', '..', '..'],
+};
+const GLYPH_HEIGHT = 7;
+
+// 文字列を行ごとのドット配列に変換する (文字間は 1 ドット空ける)
+const toDots = (text: string): boolean[][] =>
+    Array.from({ length: GLYPH_HEIGHT }, (_, row) =>
+        [...[...text].map((char) => GLYPHS[char][row]).join('.')].map((cell) => cell === '#'),
+    );
+
+const lines = ['404', 'NOT FOUND'].map(toDots);
+---
+
+<BaseLayout mainClass="not-found" hideChrome noindex>
+    <script is:inline>
+        // OS に合わせてターミナルの表示を切り替える (描画前に切り替えてちらつきを防ぐ)
+        // Apple 製品は既定の Mac 風のままにし、Android・Linux・ChromeOS は Linux 風、それ以外は Windows 風にする
+        (() => {
+            const platform = navigator.userAgentData?.platform || navigator.userAgent;
+            if (/mac|iphone|ipad|ipod/i.test(platform)) return;
+            document.documentElement.dataset.os = /android|linux|cros|chrome os/i.test(platform) ? 'linux' : 'windows';
+        })();
+    </script>
+    <div class="terminal">
+        <div class="terminal__bar">
+            <span class="terminal__dots" data-terminal-os="mac">
+                <span class="terminal__dot"></span>
+                <span class="terminal__dot"></span>
+                <span class="terminal__dot"></span>
+            </span>
+            <span class="terminal__title" data-terminal-os="mac linux">anata@kanke.world: ~</span>
+            <span class="terminal__tabs" data-terminal-os="windows">
+                <span class="terminal__tab">
+                    <span class="terminal__tab-icon"></span>
+                    <span class="terminal__tab-title">PowerShell</span>
+                    <span class="terminal__tab-close"></span>
+                </span>
+                <span class="terminal__tab-action terminal__tab-action--new"></span>
+                <span class="terminal__tab-action terminal__tab-action--menu"></span>
+            </span>
+            <span class="terminal__buttons" data-terminal-os="windows linux">
+                <span class="terminal__button terminal__button--minimize"></span>
+                <span class="terminal__button terminal__button--maximize"></span>
+                <span class="terminal__button terminal__button--close"></span>
+            </span>
+        </div>
+        <div class="terminal__body">
+            <p>
+                <TerminalPrompt />
+                curl -I <span data-terminal-url>{Astro.site?.origin}</span>
+            </p>
+            <div class="dot-text" role="img" aria-label="404 NOT FOUND">
+                {lines.map((rows) => (
+                    <div class="dot-text__line" style={`--cols: ${rows[0].length}`}>
+                        {rows.flat().map((on) => (
+                            <span class:list={['dot-text__dot', { 'is-on': on }]}></span>
+                        ))}
+                    </div>
+                ))}
+            </div>
+            <p>
+                <TerminalPrompt />
+                <a class="terminal__link" href="/">cd ~</a><span class="terminal__cursor"></span>
+            </p>
+        </div>
+    </div>
+</BaseLayout>
+
+<script>
+    // アクセスされた URL をターミナルの表示に差し込む (不正なエンコードでデコードできない場合はそのまま表示する)
+    const url = location.origin + location.pathname;
+    let displayUrl = url;
+    try {
+        displayUrl = decodeURI(url);
+    } catch {}
+    document.querySelectorAll('[data-terminal-url]').forEach((el) => {
+        el.textContent = displayUrl;
+    });
+
+    // Enter キーでトップに戻れるように、リンクにフォーカスを当てておく
+    document.querySelector<HTMLAnchorElement>('.terminal__link')?.focus({ preventScroll: true });
+</script>

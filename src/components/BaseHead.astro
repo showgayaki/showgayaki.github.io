@@ -2,10 +2,10 @@
 import Ogp from './Ogp.astro';
 import type { PageMetadata } from '../metadata';
 
-type Props = { metadata: PageMetadata };
+type Props = { metadata: PageMetadata; noindex?: boolean };
 
 const siteTitle = 'Kanke World';
-const { metadata } = Astro.props;
+const { metadata, noindex = false } = Astro.props;
 ---
 
 <meta charset="utf-8" />
@@ -13,6 +13,7 @@ const { metadata } = Astro.props;
 <meta name="generator" content={Astro.generator} />
 <title>{siteTitle} - {metadata.title}</title>
 <meta name="description" content={metadata.description}>
+{noindex && <meta name="robots" content="noindex" />}
 
 <Ogp siteTitle={siteTitle} metadata={metadata} />
 

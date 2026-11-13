@@ -9,6 +9,10 @@ export const siteMetadata: {[path: string]: PageMetadata} = {
         title: 'トップページ',
         description: 'わたしがつくったアプリたちを紹介します',
     },
+    '/404': {
+        title: 'ページが見つかりません',
+        description: 'お探しのページは見つかりませんでした',
+    },
     '/privacy': {
         title: 'プライバシーポリシー',
         description: 'わたしがつくったアプリに関するプライバシーポリシーです',

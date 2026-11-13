@@ -1,0 +1,8 @@
+---
+// 404 ページのターミナル用プロンプト。OS ごとのプロンプトをすべて出力し、CSS で 1 つだけ表示する
+const PS_PROMPT = 'PS C:\\Users\\anata>';
+---
+
+<span class="terminal__prompt" data-terminal-os="mac">$</span>
+<span class="terminal__prompt" data-terminal-os="windows">{PS_PROMPT}</span>
+<span class="terminal__prompt" data-terminal-os="linux"><span class="terminal__prompt-user">anata@kanke.world</span>:<span class="terminal__prompt-path">~</span>$</span>

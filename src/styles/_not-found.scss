@@ -1,0 +1,370 @@
+$terminal-accent: #6fa8ff;
+$terminal-dot: #fff;
+$terminal-close-hover: #c42b1c;
+$terminal-ps-icon: #2671be;
+$terminal-linux-user: #8ae234;
+$terminal-linux-path: #729fcf;
+$terminal-os-list: windows, linux;
+
+// 疑似要素を親の中央に配置する
+@mixin centered-pseudo {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+// 細い線 (ボタンアイコンの描画用)
+@mixin line($width) {
+    width: $width;
+    height: 1px;
+    background-color: var(--terminal-text);
+}
+
+// 2 本の線を交差させる (45deg で「✕」、0deg で「+」)
+@mixin cross($size, $angle) {
+    &::before,
+    &::after {
+        @include centered-pseudo;
+        @include line($size);
+        rotate: $angle;
+    }
+
+    &::after {
+        rotate: $angle + 90deg;
+    }
+}
+
+// ウィンドウボタン (最小化・最大化・閉じる) のアイコン。大きさは --terminal-icon で OS ごとに変える
+@mixin window-icons {
+    &--minimize::before {
+        @include centered-pseudo;
+        @include line(var(--terminal-icon));
+    }
+
+    &--maximize::before {
+        @include centered-pseudo;
+        width: var(--terminal-icon);
+        height: var(--terminal-icon);
+        border: 1px solid var(--terminal-text);
+    }
+
+    &--close {
+        @include cross(calc(var(--terminal-icon) * 1.4), 45deg);
+    }
+}
+
+.not-found {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding-block: 15px;
+}
+
+.terminal {
+    // OS ごとに切り替える値 (既定は Mac 風)
+    --terminal-bg: #1e1e1e;
+    --terminal-bar-bg: #2d2d2d;
+    --terminal-text: #d4d4d4;
+    --terminal-prompt: #7ec699;
+    --terminal-radius: 10px;
+    --terminal-font: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    --terminal-icon: 10px;
+
+    overflow: hidden;
+    border-radius: var(--terminal-radius);
+    background-color: var(--terminal-bg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+    font-family: var(--terminal-font);
+    color: var(--terminal-text);
+
+    // 左右の列を同じ幅にしてタイトルを中央に置く (狭い場合は左右の中身を優先し、タイトルを省略表示にする)
+    &__bar {
+        display: grid;
+        grid-template-columns: minmax(max-content, 1fr) minmax(0, max-content) minmax(max-content, 1fr);
+        align-items: center;
+        min-height: 32px;
+        padding-inline: 14px;
+        background-color: var(--terminal-bar-bg);
+    }
+
+    &__dots {
+        grid-column: 1;
+        display: flex;
+        gap: 8px;
+    }
+
+    &__dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #ff5f56;
+
+        &:nth-child(2) {
+            background-color: #ffbd2e;
+        }
+
+        &:nth-child(3) {
+            background-color: #27c93f;
+        }
+    }
+
+    &__title {
+        grid-column: 2;
+        overflow: hidden;
+        padding-inline: 8px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-align: center;
+        font-size: .8rem;
+        opacity: .7;
+    }
+
+    &__buttons {
+        grid-column: 3;
+        justify-self: end;
+        display: flex;
+        align-self: stretch;
+    }
+
+    &__button {
+        position: relative;
+        width: 46px;
+        @include window-icons;
+
+        &--close:hover {
+            background-color: $terminal-close-hover;
+        }
+    }
+
+    &__tabs {
+        display: flex;
+        flex-grow: 1;
+        align-items: center;
+        align-self: stretch;
+        min-width: 0;
+    }
+
+    // 選択中のタブは本文と同じ背景色にしてつながって見せる
+    &__tab {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        align-self: flex-end;
+        min-width: 0;
+        width: 220px;
+        height: 32px;
+        padding: 0 10px;
+        border-radius: 8px 8px 0 0;
+        background-color: var(--terminal-bg);
+        font-size: .75rem;
+    }
+
+    // PowerShell のアイコン風
+    &__tab-icon {
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+        border-radius: 3px;
+        background-color: $terminal-ps-icon;
+
+        &::before {
+            content: '>_';
+            font-size: 8px;
+            font-weight: bold;
+            line-height: 1;
+            color: #fff;
+        }
+    }
+
+    &__tab-title {
+        flex-grow: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    &__tab-close {
+        position: relative;
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+        @include cross(10px, 45deg);
+    }
+
+    &__tab-action {
+        position: relative;
+        flex-shrink: 0;
+        width: 32px;
+        height: 28px;
+
+        &--new {
+            @include cross(12px, 0deg);
+        }
+
+        // ドロップダウンの「⌄」
+        &--menu::before {
+            @include centered-pseudo;
+            width: 6px;
+            height: 6px;
+            margin-top: -2px;
+            border-right: 1px solid var(--terminal-text);
+            border-bottom: 1px solid var(--terminal-text);
+            rotate: 45deg;
+        }
+    }
+
+    &__body {
+        // ドット文字のサイズを横幅に合わせるためのコンテナ
+        container-type: inline-size;
+        display: flex;
+        flex-direction: column;
+        gap: .4em;
+        min-height: 60vh;
+        padding: 20px;
+        font-size: .9rem;
+        word-break: break-all;
+    }
+
+    &__prompt {
+        color: var(--terminal-prompt);
+    }
+
+    &__prompt-user {
+        font-weight: bold;
+        color: $terminal-linux-user;
+    }
+
+    &__prompt-path {
+        font-weight: bold;
+        color: $terminal-linux-path;
+    }
+
+    &__link {
+        color: var(--terminal-text);
+        text-decoration: underline;
+
+        &:hover {
+            color: $terminal-accent;
+        }
+
+        // 初期フォーカスを当てているので枠線は出さない (カーソルの点滅で入力位置を示す)
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__cursor {
+        display: inline-block;
+        width: .6em;
+        height: 1.1em;
+        margin-left: 4px;
+        vertical-align: text-bottom;
+        background-color: var(--terminal-text);
+        animation: terminal-blink 1s steps(1) infinite;
+    }
+}
+
+// data-terminal-os に現在の OS を含まない要素は隠す (data-os は 404.astro のインラインスクリプトで設定、未設定は Mac 風)
+:root:not([data-os]) [data-terminal-os]:not([data-terminal-os~='mac']) {
+    display: none;
+}
+
+@each $os in $terminal-os-list {
+    :root[data-os='#{$os}'] [data-terminal-os]:not([data-terminal-os~='#{$os}']) {
+        display: none;
+    }
+}
+
+// Windows 風
+
+:root[data-os='windows'] .terminal {
+    --terminal-bg: #0c0c0c;
+    --terminal-bar-bg: #202020;
+    --terminal-text: #cccccc;
+    --terminal-prompt: var(--terminal-text);
+    --terminal-radius: 8px;
+    --terminal-font: "Cascadia Mono", Consolas, Menlo, monospace;
+
+    .terminal__bar {
+        display: flex;
+        min-height: 40px;
+        padding-inline: 8px 0;
+    }
+}
+
+// Linux 風 (GNOME 端末をイメージ)
+:root[data-os='linux'] .terminal {
+    --terminal-bg: #2c2130;
+    --terminal-bar-bg: #303030;
+    --terminal-text: #d3d7cf;
+    --terminal-prompt: var(--terminal-text);
+    --terminal-radius: 12px;
+    --terminal-font: "Ubuntu Mono", "DejaVu Sans Mono", "Liberation Mono", monospace;
+    --terminal-icon: 8px;
+
+    .terminal__bar {
+        min-height: 46px;
+        padding-inline: 10px;
+    }
+
+    .terminal__title {
+        font-weight: bold;
+        opacity: .9;
+    }
+
+    .terminal__buttons {
+        align-self: center;
+        gap: 12px;
+    }
+
+    // 丸いボタン
+    .terminal__button {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, .1);
+
+        &:hover {
+            background-color: rgba(255, 255, 255, .2);
+        }
+    }
+}
+
+.dot-text {
+    // 最長行(NOT FOUND: 50 ドット)がドット間のすき間込みで横幅に収まるようにする
+    --dot-size: min(14px, calc(100cqi / 60));
+    --dot-gap: calc(var(--dot-size) / 5);
+
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--dot-size) * 2);
+    margin: 1.2em 0;
+
+    &__line {
+        display: grid;
+        grid-template-columns: repeat(var(--cols), var(--dot-size));
+        grid-auto-rows: var(--dot-size);
+        gap: var(--dot-gap);
+    }
+
+    &__dot.is-on {
+        background-color: $terminal-dot;
+    }
+}
+
+@keyframes terminal-blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .terminal__cursor {
+        animation: none;
+    }
+}
