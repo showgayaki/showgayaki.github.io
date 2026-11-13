@@ -24,7 +24,6 @@ const app = (routeParams.app ?? props.app) as AppId;
 const lang = (routeParams.lang ?? props.lang) as Lang;
 
 const appConfig = APPS[app];
-const appName = appConfig.name[lang];
 
 let dict: LegalDict | undefined;
 switch (appConfig.terms) {
@@ -41,6 +40,9 @@ if (!dict) {
 }
 
 const metadata = buildAppLegalMetadata('terms', app, lang, dict.title);
+
+// 言語なしの URL (index.astro) から表示された場合も、言語付きの URL を正規 URL にする
+const canonicalPath = `/terms/${app}/${lang}`;
 ---
 
-<LegalTemplate dict={dict} metadata={metadata} lang={lang} />
+<LegalTemplate dict={dict} metadata={metadata} lang={lang} canonicalPath={canonicalPath} />

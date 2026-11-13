@@ -3,14 +3,14 @@ import Ogp from './Ogp.astro';
 import type { PageMetadata } from '../domain/app/metadata';
 import type { Lang } from '../domain/app/types';
 
-type Props = { metadata: PageMetadata; lang: Lang; noindex?: boolean };
+type Props = { metadata: PageMetadata; lang: Lang; noindex?: boolean; canonicalPath?: string };
 
 const siteTitle = 'Kanke World';
-const { metadata, lang, noindex = false } = Astro.props;
+const { metadata, lang, noindex = false, canonicalPath } = Astro.props;
 
 // ビルド時は build.format: 'file' によりパスが .html 付きになるため、正規 URL からは取り除く
 const pathname = Astro.url.pathname.replace(/(\/index)?\.html$/, '') || '/';
-const canonicalUrl = new URL(pathname, Astro.url).href;
+const canonicalUrl = new URL(canonicalPath ?? pathname, Astro.url).href;
 ---
 
 <meta charset="utf-8" />

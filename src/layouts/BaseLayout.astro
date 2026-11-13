@@ -13,15 +13,17 @@ type Props = {
     mainClass?: string;
     hideChrome?: boolean;
     noindex?: boolean;
+    canonicalPath?: string;
 };
 
 // hideChrome: ヘッダー・フッターを表示しない、noindex: 検索エンジンにインデックスさせない
-const { metadata, lang = 'ja', mainClass = '', hideChrome = false, noindex = false } = Astro.props;
+// canonicalPath: 正規 URL のパス。省略時はアクセスされたパスを使う
+const { metadata, lang = 'ja', mainClass = '', hideChrome = false, noindex = false, canonicalPath } = Astro.props;
 ---
 
 <html lang={lang}>
     <head>
-        <BaseHead metadata={metadata} lang={lang} noindex={noindex} />
+        <BaseHead metadata={metadata} lang={lang} noindex={noindex} canonicalPath={canonicalPath} />
     </head>
     <body>
         {!hideChrome && <Header />}
