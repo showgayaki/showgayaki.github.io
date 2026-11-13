@@ -4,6 +4,7 @@ body{
     display: flex;
     flex-flow: column;
     font-family: $font-family;
+    background-color: $color-background;
 }
 .container{
     padding: 0 15px;
