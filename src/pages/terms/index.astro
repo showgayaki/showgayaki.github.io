@@ -1,14 +1,20 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { APPS } from '@/domain/app/registry';
+import { LEGAL_TITLES } from '@/domain/app/types';
 
 const termsApps = Object.values(APPS).filter(
     (app) => app.terms !== undefined,
 );
+
+const metadata = {
+    title: LEGAL_TITLES.terms,
+    description: 'わたしがつくったアプリに関する利用規約まとめです',
+};
 ---
 
-<BaseLayout mainClass="legal">
-    <h2 class="legal__title">利用規約</h2>
+<BaseLayout metadata={metadata} mainClass="legal">
+    <h2 class="legal__title">{metadata.title}</h2>
 
     <section class="legal__section">
         <p class="legal__explanation">

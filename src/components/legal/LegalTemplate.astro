@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import type { PageMetadata } from '@/domain/app/metadata';
+import type { Lang } from '@/domain/app/types';
 
 type LegalLink = {
     label: string;
@@ -26,12 +28,12 @@ export type LegalDict = {
     sections: LegalSection[];
 };
 
-type Props = { dict: LegalDict };
-const { dict } = Astro.props;
+type Props = { dict: LegalDict; metadata: PageMetadata; lang: Lang };
+const { dict, metadata, lang } = Astro.props;
 
 ---
 
-<BaseLayout mainClass="legal">
+<BaseLayout metadata={metadata} lang={lang} mainClass="legal">
     <h2 class="legal__title">{dict.title}</h2>
 
     {

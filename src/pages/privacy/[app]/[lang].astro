@@ -3,6 +3,7 @@ import LegalTemplate from '@/components/legal/LegalTemplate.astro';
 
 import { buildPaths } from '@/domain/app/paths';
 import { APPS } from '@/domain/app/registry';
+import { buildAppLegalMetadata } from '@/domain/app/metadata';
 import type { AppId, Lang } from '@/domain/app/types';
 import type { LegalDict } from '@/components/legal/LegalTemplate.astro';
 
@@ -45,6 +46,8 @@ switch (appConfig.privacy) {
 if (!dict) {
     throw new Error(`Unknown app or lang: ${app}/${lang}`);
 }
+
+const metadata = buildAppLegalMetadata('privacy', app, lang, dict.title);
 ---
 
-<LegalTemplate dict={dict} />
+<LegalTemplate dict={dict} metadata={metadata} lang={lang} />

@@ -1,28 +1,27 @@
 ---
-import { siteMetadata } from '@/metadata';
+import type { PageMetadata } from '@/domain/app/metadata';
+import type { Lang } from '@/domain/app/types';
 
 import BaseHead from '@/components/BaseHead.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import '@/styles/style.scss';
 
-// hideChrome: ヘッダー・フッターを表示しない、noindex: 検索エンジンにインデックスさせない
-const { mainClass = '', hideChrome = false, noindex = false } = Astro.props;
-// 末尾のスラッシュ削除（ただしルートパスは除く）
-// ビルド時は build.format: 'file' によりパスが .html 付きになるため、それも削除する
-const normalizePath = (p?: string) => {
-    if (!p) return '/';
-    if (p === '/') return '/';
-    return p.replace(/\.html$/, '').replace(/\/+$/, '');
+type Props = {
+    metadata: PageMetadata;
+    lang?: Lang;
+    mainClass?: string;
+    hideChrome?: boolean;
+    noindex?: boolean;
 };
 
-const normalizedPage = normalizePath(Astro.url.pathname);
-const pageMetadata = siteMetadata[normalizedPage] ?? siteMetadata['/'];
+// hideChrome: ヘッダー・フッターを表示しない、noindex: 検索エンジンにインデックスさせない
+const { metadata, lang = 'ja', mainClass = '', hideChrome = false, noindex = false } = Astro.props;
 ---
 
-<html>
+<html lang={lang}>
     <head>
-        <BaseHead metadata={pageMetadata} noindex={noindex} />
+        <BaseHead metadata={metadata} lang={lang} noindex={noindex} />
     </head>
     <body>
         {!hideChrome && <Header />}

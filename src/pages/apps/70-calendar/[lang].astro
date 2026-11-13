@@ -20,11 +20,20 @@ const props = Astro.props as Partial<Props>;
 const lang = (routeParams.lang ?? props.lang) as Lang;
 
 let dict: LegalDict;
+let description: string;
 switch (lang) {
-    case 'en': dict = en; break;
-    case 'ja': dict = ja; break;
+    case 'en':
+        dict = en;
+        description = '70! Calendar is a Google Calendar client app for iOS and macOS.';
+        break;
+    case 'ja':
+        dict = ja;
+        description = '70! カレンダーは、iOS・macOS向けのGoogleカレンダークライアントアプリです。';
+        break;
     default: throw new Error(`Unknown lang: ${lang}`);
 }
+
+const metadata = { title: dict.title, description };
 ---
 
-<LegalTemplate dict={dict} />
+<LegalTemplate dict={dict} metadata={metadata} lang={lang} />

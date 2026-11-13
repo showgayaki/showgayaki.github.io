@@ -2,8 +2,8 @@
 import { Image } from 'astro:assets';
 import QRCode from '@/images/qr.png';
 
-import { siteMetadata } from '@/metadata';
 import { PAGES, APPS } from '@/domain/app/registry';
+import { LEGAL_TITLES, type LegalType } from '@/domain/app/types';
 
 const pages = Object.fromEntries(
     PAGES.map((legal) => {
@@ -28,14 +28,14 @@ const pages = Object.fromEntries(
                     <details class="navigation__item">
                         <summary class="navigation__title trailing-arrow-right">
                             <a href={`/${page}`} class="navigation__title-link">
-                                {siteMetadata[`/${page}`]?.title ?? page}
+                                {LEGAL_TITLES[page as LegalType]}
                             </a>
                         </summary>
                     </details>
                 ) : (
                     <details class="navigation__item">
                         <summary class="navigation__title trailing-arrow-bottom">
-                            {siteMetadata[`/${page}`]?.title ?? page}
+                            {LEGAL_TITLES[page as LegalType]}
                         </summary>
                         <ul class="navigation__submenu">
                             {pages[page].map((id) => (

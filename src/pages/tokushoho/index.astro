@@ -1,12 +1,18 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { LEGAL_TITLES } from '@/domain/app/types';
 
 const myName = import.meta.env.PUBLIC_MY_NAME;
 const myEmail = import.meta.env.PUBLIC_MY_EMAIL;
+
+const metadata = {
+    title: LEGAL_TITLES.tokushoho,
+    description: 'わたしがつくったアプリに関する特定商取引法に基づく表記です',
+};
 ---
 
-<BaseLayout page="/tokushoho" lang="ja" mainClass="legal">
-    <h2 class="legal__title">特定商取引法に基づく表記</h2>
+<BaseLayout metadata={metadata} mainClass="legal">
+    <h2 class="legal__title">{metadata.title}</h2>
 
     <section class="legal__section">
         <h3 class="legal__section-title">販売事業者</h3>

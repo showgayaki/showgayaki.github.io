@@ -1,8 +1,13 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import MyApps from '@/components/Apps.astro';
+
+const metadata = {
+    title: 'トップページ',
+    description: 'わたしがつくったアプリたちを紹介します',
+};
 ---
 
-<BaseLayout>
+<BaseLayout metadata={metadata}>
     <MyApps />
 </BaseLayout>

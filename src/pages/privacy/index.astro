@@ -1,14 +1,20 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { APPS } from '@/domain/app/registry';
+import { LEGAL_TITLES } from '@/domain/app/types';
 
 const privacyApps = Object.values(APPS).filter(
     (app) => app.privacy !== undefined,
 );
+
+const metadata = {
+    title: LEGAL_TITLES.privacy,
+    description: 'わたしがつくったアプリに関するプライバシーポリシーです',
+};
 ---
 
-<BaseLayout mainClass="legal">
-    <h2 class="legal__title">プライバシーポリシー</h2>
+<BaseLayout metadata={metadata} mainClass="legal">
+    <h2 class="legal__title">{metadata.title}</h2>
 
     <section class="legal__section">
         <p class="legal__explanation">

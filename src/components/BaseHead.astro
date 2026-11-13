@@ -1,11 +1,16 @@
 ---
 import Ogp from './Ogp.astro';
-import type { PageMetadata } from '../metadata';
+import type { PageMetadata } from '../domain/app/metadata';
+import type { Lang } from '../domain/app/types';
 
-type Props = { metadata: PageMetadata; noindex?: boolean };
+type Props = { metadata: PageMetadata; lang: Lang; noindex?: boolean };
 
 const siteTitle = 'Kanke World';
-const { metadata, noindex = false } = Astro.props;
+const { metadata, lang, noindex = false } = Astro.props;
+
+// ビルド時は build.format: 'file' によりパスが .html 付きになるため、正規 URL からは取り除く
+const pathname = Astro.url.pathname.replace(/(\/index)?\.html$/, '') || '/';
+const canonicalUrl = new URL(pathname, Astro.url).href;
 ---
 
 <meta charset="utf-8" />
@@ -15,7 +20,7 @@ const { metadata, noindex = false } = Astro.props;
 <meta name="description" content={metadata.description}>
 {noindex && <meta name="robots" content="noindex" />}
 
-<Ogp siteTitle={siteTitle} metadata={metadata} />
+<Ogp siteTitle={siteTitle} metadata={metadata} lang={lang} url={canonicalUrl} />
 
 <link rel="icon" type="image/x-icon" href="/favicon.svg" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
